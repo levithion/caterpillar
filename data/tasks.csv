@@ -1,0 +1,51 @@
+Task ID,Date,Machine ID,Operator ID,Task Type,Site,Weather,Priority,Estimated Time (min),Actual Time (min),Start Time,End Time,Status
+T0001,2026-09-20,DMP005,OP1008,Demolition,Site C - Highway Ext,Sunny,High,95,107,2026-09-20 14:00:00,2026-09-20 15:47:00,Completed
+T0002,2026-09-11,DMP005,OP1002,Grading,Site B - Quarry,Rainy,High,37,36,2026-09-11 08:00:00,2026-09-11 08:36:00,Completed
+T0003,2026-09-04,GRD004,OP1005,Trenching,Site A - North Yard,Cloudy,High,42,56,2026-09-04 14:00:00,2026-09-04 14:56:00,Completed
+T0004,2026-09-11,EXC001,OP1008,Earth Excavation,Site A - North Yard,Cloudy,Low,59,62,2026-09-11 07:00:00,2026-09-11 08:02:00,Completed
+T0005,2026-09-16,BDZ003,OP1002,Trenching,Site D - Residential,Windy,Low,48,45,2026-09-16 14:00:00,2026-09-16 14:45:00,Completed
+T0006,2026-09-18,DMP005,OP1004,Grading,Site A - North Yard,Cloudy,Low,37,45,2026-09-18 13:00:00,2026-09-18 13:45:00,Completed
+T0007,2026-09-08,CMP006,OP1002,Earth Excavation,Site A - North Yard,Foggy,Low,63,68,2026-09-08 07:00:00,2026-09-08 08:08:00,Completed
+T0008,2026-09-21,GRD004,OP1001,Earth Excavation,Site C - Highway Ext,Sunny,High,60,62,2026-09-21 07:00:00,2026-09-21 08:02:00,Completed
+T0009,2026-09-16,BDZ003,OP1004,Compaction,Site D - Residential,Foggy,Low,44,56,2026-09-16 13:00:00,2026-09-16 13:56:00,Completed
+T0010,2026-09-04,EXC007,OP1002,Material Loading,Site A - North Yard,Windy,Low,31,32,2026-09-04 06:00:00,2026-09-04 06:32:00,Completed
+T0011,2026-09-13,LDR002,OP1006,Trenching,Site D - Residential,Rainy,Low,43,63,2026-09-13 07:00:00,2026-09-13 08:03:00,Completed
+T0012,2026-09-09,GRD004,OP1008,Hauling,Site A - North Yard,Sunny,Low,52,59,2026-09-09 14:00:00,2026-09-09 14:59:00,Completed
+T0013,2026-09-21,EXC001,OP1009,Earth Excavation,Site B - Quarry,Rainy,Medium,57,69,2026-09-21 13:00:00,2026-09-21 14:09:00,Completed
+T0014,2026-09-02,EXC007,OP1003,Earth Excavation,Site C - Highway Ext,Windy,Medium,59,74,2026-09-02 13:00:00,2026-09-02 14:14:00,Completed
+T0015,2026-09-18,BDZ003,OP1008,Trenching,Site A - North Yard,Cloudy,High,43,51,2026-09-18 14:00:00,2026-09-18 14:51:00,Completed
+T0016,2026-09-11,EXC001,OP1001,Demolition,Site B - Quarry,Windy,Low,93,111,2026-09-11 14:00:00,2026-09-11 15:51:00,Completed
+T0017,2026-09-17,BDZ003,OP1002,Earth Excavation,Site D - Residential,Foggy,Low,56,63,2026-09-17 07:00:00,2026-09-17 08:03:00,Completed
+T0018,2026-09-19,EXC001,OP1004,Demolition,Site C - Highway Ext,Sunny,Medium,91,99,2026-09-19 14:00:00,2026-09-19 15:39:00,Completed
+T0019,2026-09-07,GRD004,OP1006,Material Loading,Site D - Residential,Windy,Medium,27,39,2026-09-07 08:00:00,2026-09-07 08:39:00,Completed
+T0020,2026-09-03,LDR008,OP1001,Demolition,Site C - Highway Ext,Foggy,Low,86,114,2026-09-03 07:00:00,2026-09-03 08:54:00,Completed
+T0021,2026-09-12,GRD004,OP1002,Material Loading,Site C - Highway Ext,Cloudy,High,27,25,2026-09-12 14:00:00,2026-09-12 14:25:00,Completed
+T0022,2026-09-21,EXC001,OP1009,Compaction,Site B - Quarry,Foggy,Medium,39,54,2026-09-21 06:00:00,2026-09-21 06:54:00,Completed
+T0023,2026-09-04,BDZ003,OP1002,Material Loading,Site B - Quarry,Cloudy,High,34,30,2026-09-04 08:00:00,2026-09-04 08:30:00,Completed
+T0024,2026-09-21,LDR008,OP1005,Material Loading,Site A - North Yard,Sunny,Low,26,36,2026-09-21 08:00:00,2026-09-21 08:36:00,Completed
+T0025,2026-09-11,DMP005,OP1003,Trenching,Site A - North Yard,Windy,Low,48,59,2026-09-11 14:00:00,2026-09-11 14:59:00,Completed
+T0026,2026-09-03,EXC001,OP1003,Hauling,Site B - Quarry,Cloudy,Low,54,59,2026-09-03 13:00:00,2026-09-03 13:59:00,Completed
+T0027,2026-09-10,EXC001,OP1006,Material Loading,Site C - Highway Ext,Rainy,High,35,49,2026-09-10 06:00:00,2026-09-10 06:49:00,Completed
+T0028,2026-09-14,BDZ003,OP1010,Trenching,Site B - Quarry,Rainy,High,42,55,2026-09-14 06:00:00,2026-09-14 06:55:00,Completed
+T0029,2026-09-11,GRD004,OP1007,Material Loading,Site D - Residential,Rainy,Low,26,27,2026-09-11 06:00:00,2026-09-11 06:27:00,Completed
+T0030,2026-09-07,CMP006,OP1008,Material Loading,Site D - Residential,Rainy,Medium,28,31,2026-09-07 07:00:00,2026-09-07 07:31:00,Completed
+T0031,2026-09-09,DMP005,OP1002,Material Loading,Site C - Highway Ext,Foggy,Low,31,37,2026-09-09 14:00:00,2026-09-09 14:37:00,Completed
+T0032,2026-09-04,BDZ003,OP1005,Demolition,Site C - Highway Ext,Cloudy,High,85,107,2026-09-04 13:00:00,2026-09-04 14:47:00,Completed
+T0033,2026-09-11,LDR002,OP1007,Grading,Site A - North Yard,Foggy,High,33,34,2026-09-11 13:00:00,2026-09-11 13:34:00,Completed
+T0034,2026-09-18,CMP006,OP1004,Grading,Site C - Highway Ext,Sunny,High,40,47,2026-09-18 14:00:00,2026-09-18 14:47:00,Completed
+T0035,2026-09-04,DMP005,OP1005,Compaction,Site B - Quarry,Windy,Low,40,56,2026-09-04 08:00:00,2026-09-04 08:56:00,Completed
+T0036,2026-09-14,BDZ003,OP1007,Demolition,Site C - Highway Ext,Foggy,Medium,89,97,2026-09-14 06:00:00,2026-09-14 07:37:00,Completed
+T0037,2026-09-07,CMP006,OP1007,Grading,Site D - Residential,Windy,High,37,38,2026-09-07 14:00:00,2026-09-07 14:38:00,Completed
+T0038,2026-09-06,DMP005,OP1002,Demolition,Site C - Highway Ext,Foggy,Low,90,99,2026-09-06 07:00:00,2026-09-06 08:39:00,Completed
+T0039,2026-09-07,EXC001,OP1003,Earth Excavation,Site D - Residential,Rainy,Medium,62,77,2026-09-07 06:00:00,2026-09-07 07:17:00,Completed
+T0040,2026-09-21,GRD004,OP1010,Compaction,Site A - North Yard,Windy,Low,42,49,2026-09-21 07:00:00,2026-09-21 07:49:00,Completed
+T0041,2026-09-14,BDZ003,OP1004,Hauling,Site A - North Yard,Foggy,Medium,52,63,2026-09-14 07:00:00,2026-09-14 08:03:00,Completed
+T0042,2026-09-05,CMP006,OP1008,Hauling,Site D - Residential,Windy,High,54,66,2026-09-05 14:00:00,2026-09-05 15:06:00,Completed
+T0043,2026-09-15,LDR008,OP1003,Grading,Site D - Residential,Cloudy,High,33,41,2026-09-15 08:00:00,2026-09-15 08:41:00,Completed
+T0044,2026-09-08,LDR008,OP1005,Earth Excavation,Site A - North Yard,Cloudy,Low,58,78,2026-09-08 08:00:00,2026-09-08 09:18:00,Completed
+T0045,2026-09-05,EXC007,OP1004,Compaction,Site C - Highway Ext,Rainy,High,38,45,2026-09-05 13:00:00,2026-09-05 13:45:00,Completed
+T0046,2026-09-15,EXC001,OP1007,Trenching,Site A - North Yard,Windy,High,46,49,2026-09-15 14:00:00,2026-09-15 14:49:00,Completed
+T0047,2026-09-13,EXC001,OP1008,Material Loading,Site B - Quarry,Cloudy,Medium,31,37,2026-09-13 13:00:00,2026-09-13 13:37:00,Completed
+T0048,2026-09-08,EXC007,OP1005,Grading,Site B - Quarry,Sunny,Medium,36,46,2026-09-08 13:00:00,2026-09-08 13:46:00,Completed
+T0049,2026-09-05,EXC001,OP1010,Grading,Site D - Residential,Foggy,Low,39,51,2026-09-05 06:00:00,2026-09-05 06:51:00,Completed
+T0050,2026-09-15,EXC001,OP1003,Material Loading,Site C - Highway Ext,Windy,Medium,30,32,2026-09-15 08:00:00,2026-09-15 08:32:00,Completed
