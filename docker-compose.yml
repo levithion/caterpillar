@@ -8,9 +8,11 @@ services:
     volumes:
       - ./data:/app/data:ro
       - ./models:/app/models
+      - operators-db:/app/state
     environment:
       - DATA_DIR=/app/data
       - MODELS_DIR=/app/models
+      - OPERATORS_DB_PATH=/app/state/operators.db
       - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/ready"]
@@ -29,3 +31,6 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+
+volumes:
+  operators-db:
