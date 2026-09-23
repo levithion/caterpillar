@@ -1,10 +1,13 @@
 :root {
-  --bg: #0f172a;
-  --panel: #1e293b;
-  --border: #334155;
-  --text: #e2e8f0;
-  --muted: #94a3b8;
-  --accent: #f59e0b;
+  --bg: #141414;
+  --panel: #1e1e1e;
+  --border: #3a3a3a;
+  --text: #f2f2f2;
+  --muted: #a6a6a6;
+  --accent: #ffcd11;
+  --accent-contrast: #000000;
+  --font-heading: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -15,7 +18,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
 }
 
 .app {
@@ -24,7 +27,8 @@ body {
 
 header {
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
+  background: #000;
+  border-bottom: 3px solid var(--accent);
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -32,9 +36,33 @@ header {
 }
 
 header h1 {
-  font-size: 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   margin: 0;
-  color: var(--accent);
+  color: var(--text);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
 }
 
 nav {
@@ -46,6 +74,8 @@ nav button {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text);
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
   padding: 0.4rem 0.9rem;
   border-radius: 6px;
   cursor: pointer;
@@ -53,7 +83,7 @@ nav button {
 
 nav button.active {
   background: var(--accent);
-  color: #1a1a1a;
+  color: var(--accent-contrast);
   border-color: var(--accent);
 }
 
@@ -62,6 +92,9 @@ main {
 }
 
 .panel h2 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   margin-top: 0;
 }
 
@@ -116,13 +149,13 @@ th {
 }
 
 .priority-high, .severity-high { background: #ef4444; color: #fff; }
-.priority-medium, .severity-medium { background: #f59e0b; color: #1a1a1a; }
-.priority-low, .severity-low { background: #22c55e; color: #1a1a1a; }
+.priority-medium, .severity-medium { background: var(--accent); color: var(--accent-contrast); }
+.priority-low, .severity-low { background: #22c55e; color: #0a0a0a; }
 
-.status-completed { background: #22c55e; color: #1a1a1a; }
+.status-completed { background: #22c55e; color: #0a0a0a; }
 .status-scheduled { background: #3b82f6; color: #fff; }
-.status-in-progress { background: #f59e0b; color: #1a1a1a; }
-.status-active { background: #22c55e; color: #1a1a1a; }
+.status-in-progress { background: var(--accent); color: var(--accent-contrast); }
+.status-active { background: #22c55e; color: #0a0a0a; }
 .status-idle { background: #64748b; color: #fff; }
 .status-maintenance { background: #ef4444; color: #fff; }
 .status-not-started { background: #64748b; color: #fff; }
@@ -152,14 +185,20 @@ th {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 0.4rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .form button {
   background: var(--accent);
+  color: var(--accent-contrast);
   border: none;
   border-radius: 6px;
   padding: 0.5rem 1.2rem;
   cursor: pointer;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   font-weight: 600;
   height: fit-content;
 }
@@ -167,25 +206,37 @@ th {
 .login-panel {
   max-width: 420px;
   margin: 3rem auto;
+  text-align: center;
+}
+
+.login-panel .logo {
+  display: inline-flex;
+  margin-bottom: 1.5rem;
 }
 
 .login-panel .form {
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: stretch;
+  text-align: left;
 }
 
 .phone-row {
   display: flex;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .phone-row select {
   flex: 0 0 auto;
+  width: auto;
   max-width: 45%;
+  min-width: 0;
 }
 
 .phone-row input {
   flex: 1;
+  width: auto;
   min-width: 0;
 }
 
