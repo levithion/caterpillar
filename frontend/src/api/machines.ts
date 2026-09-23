@@ -15,10 +15,10 @@ export type Machine = {
 };
 
 export async function fetchMachines(): Promise<Machine[]> {
-  const data = await apiGet<{ machines: Machine[] }>("/machines");
+  const data = await apiGet<{ machines: Machine[] }>("/machine-capabilities");
   return data.machines;
 }
 
 export async function fetchMachine(machineId: string): Promise<Machine> {
-  return apiGet<Machine>(`/machines/${encodeURIComponent(machineId)}`);
+  return apiGet<Machine>(`/machine-capabilities/${encodeURIComponent(machineId)}`);
 }
