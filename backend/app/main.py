@@ -7,8 +7,11 @@ from pydantic import BaseModel
 
 from app.data import load_all
 from app.ml import detect_anomalies, predict_task_time, train_task_time_model
+from app.routers import coaching, safety
 
 app = FastAPI(title="Smart Operator Assistant API")
+app.include_router(safety.router)
+app.include_router(coaching.router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,11 +51,6 @@ def get_telemetry(machine_id: str | None = None):
     if machine_id:
         telemetry = telemetry[telemetry["Machine ID"] == machine_id]
     return _records(telemetry)
-
-
-@app.get("/api/incidents")
-def get_incidents():
-    return _records(load_all()["incidents"])
 
 
 @app.get("/api/training/modules")
