@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { authApi, type Operator } from "../api/auth";
 import { COUNTRY_CODES } from "../countryCodes";
+import { CatLogo } from "./CatLogo";
 
 const SKILL_LEVELS = ["Beginner", "Intermediate", "Expert"];
 const SHIFTS = ["Day", "Night"];
@@ -66,6 +67,7 @@ export function Login({ onLogin }: { onLogin: (operator: Operator) => void }) {
 
   return (
     <div className="panel login-panel">
+      <CatLogo />
       <h2>Smart Operator Assistant</h2>
       <div className="form">
         {mode === "login" ? (
