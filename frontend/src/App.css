@@ -152,6 +152,8 @@ th {
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 0.4rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .form button {
@@ -171,21 +173,26 @@ th {
 
 .login-panel .form {
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: stretch;
 }
 
 .phone-row {
   display: flex;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .phone-row select {
   flex: 0 0 auto;
+  width: auto;
   max-width: 45%;
+  min-width: 0;
 }
 
 .phone-row input {
   flex: 1;
+  width: auto;
   min-width: 0;
 }
 
