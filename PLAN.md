@@ -149,7 +149,10 @@ fine too as long as join keys/column names stay stable.
 the relevant simulated hardware).
 
 **Extend `operators.csv`** — add `Typical Fatigue Risk` (low/med/high, shift-correlated)
-and `Weight Class` (feeds the ergonomic seat-pressure baseline).
+and `Weight Class` (feeds the ergonomic seat-pressure baseline); also `Email`, `Phone`
+(country code + number), `Password Hash`, `Password Salt` (replacing the old `Contact`
+field) for operator login/signup — see "Operator login" below. `Password Hash`/`Salt`
+are stripped from every API response except internally during login verification.
 
 **Extend `tasks.csv`** — add `Predicted Time (min)`, `Prediction Lower Bound`,
 `Prediction Upper Bound` (persists the model's confidence range alongside the task
@@ -179,6 +182,24 @@ don't exist in the current schema.
 `Severity` (info/warning/critical), `Message`, `Recommended Action`.
 
 `safety_incidents.csv`, `training_modules.csv`, `training_records.csv` stay as-is.
+
+## Operator login (built)
+
+The app is gated behind operator login/signup — a prototype-level identity layer (who's
+using the cab right now), not a production security boundary.
+
+- `POST /api/operators/signup` — name, email, phone (country code + number, picked from
+  a full ITU-T dial-code list on the frontend), password, skill level, shift. The
+  Operator ID is **always assigned by the server** (`OP1001`, `OP1002`, …) — never
+  user-entered. Password is hashed (PBKDF2-HMAC-SHA256, random salt) before it touches
+  disk; the plaintext password is never stored or logged.
+- `POST /api/operators/login` — accepts **either** email or Operator ID as the
+  identifier, plus password.
+- Every API response (including the general `/api/operators` list) strips
+  `Password Hash`/`Password Salt` before returning — only the login/signup flow itself
+  ever touches them.
+- All 10 seed operators share one known demo password (`Demo@123`, see
+  `scripts/generate_data.py`) so the demo has working credentials out of the box.
 
 ## Creative additions for Caterpillar (post-core, differentiators)
 

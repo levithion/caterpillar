@@ -8,7 +8,8 @@ router = APIRouter(tags=["training"])
 
 @router.get("/api/operators")
 def get_operators():
-    return records(load_all()["operators"])
+    operators = load_all()["operators"].drop(columns=["Password Hash", "Password Salt"], errors="ignore")
+    return records(operators)
 
 
 @router.get("/api/training/modules")

@@ -1,9 +1,20 @@
 import csv
+import hashlib
 import os
 import random
+import sys
 from datetime import datetime, timedelta
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "backend"))
+from app.security import hash_password  # noqa: E402
+
 random.seed(42)
+# Every seed operator gets this password (hashed, not stored in plaintext) so the
+# demo has known login credentials: email or Operator ID + this password. The salt
+# is fixed (derived, not random) purely so scripts/generate_data.py stays
+# deterministic across reruns like the rest of the dataset.
+DEMO_PASSWORD = "Demo@123"
+DEMO_SALT = hashlib.sha256(b"smart-operator-assistant-demo-salt").hexdigest()[:32]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
 os.makedirs(OUT, exist_ok=True)
 TODAY = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
@@ -46,6 +57,8 @@ last_names = ["Kumar", "Singh", "Patel", "Lee", "Smith", "Chen", "Khan", "Diaz",
 skills = ["Beginner", "Intermediate", "Expert"]
 operators = []
 weight_classes = ["Light", "Medium", "Heavy"]
+demo_country_codes = ["+1", "+44", "+91", "+61", "+27", "+971"]
+demo_password_hash, demo_password_salt = hash_password(DEMO_PASSWORD, DEMO_SALT)
 for i in range(1, 11):
     join = TODAY - timedelta(days=random.randint(60, 3000))
     license_exp = TODAY + timedelta(days=random.randint(30, 800))
@@ -61,7 +74,10 @@ for i in range(1, 11):
         "License Expiry": license_exp.date().isoformat(),
         "Date of Joining": join.date().isoformat(),
         "Shift": shift,
-        "Contact": f"op{1000 + i}@caterpillar-demo.local",
+        "Email": f"op{1000 + i}@caterpillar-demo.local",
+        "Phone": f"{random.choice(demo_country_codes)} {random.randint(1000000000, 9999999999)}",
+        "Password Hash": demo_password_hash,
+        "Password Salt": demo_password_salt,
         "Typical Fatigue Risk": random.choices(["Low", "Medium", "High"], weights=fatigue_risk_weights)[0],
         "Weight Class": random.choice(weight_classes),
     })
