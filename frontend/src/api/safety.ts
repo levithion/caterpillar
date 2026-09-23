@@ -1,12 +1,35 @@
-import { get, type Row } from "./client";
-
-export const safetyApi = {
-  telemetry: (machineId?: string) =>
-    get(machineId ? `/telemetry?machine_id=${encodeURIComponent(machineId)}` : "/telemetry"),
-  incidents: () => get("/incidents"),
-};
+import { get, getOne, BASE_URL, type Row } from "./client";
 
 export type { Row };
 
-// TODO (Member 2): fatigue() + coaching() calls once /api/fatigue and
-// /api/coaching exist (this file is scaffolded, not owned by Member 1).
+export interface SafetySummaryData {
+  seatbelt_compliance: Row[];
+  proximity_hazards: Row[];
+  latest_fatigue: Row[];
+}
+
+export async function getIncidents(): Promise<Row[]> {
+  return get("/incidents");
+}
+
+export async function createIncident(payload: {
+  machine_id: string;
+  operator_id: string;
+  incident_type: string;
+  severity: string;
+  description?: string;
+  action_taken?: string;
+  location?: string;
+}): Promise<Row> {
+  const res = await fetch(`${BASE_URL}/incidents`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error("Failed to create incident");
+  return res.json();
+}
+
+export async function getSafetySummary(): Promise<SafetySummaryData> {
+  return getOne<SafetySummaryData>("/safety/summary");
+}

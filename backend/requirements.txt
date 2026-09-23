@@ -3,6 +3,7 @@ uvicorn[standard]
 pandas
 scikit-learn
 joblib
+pydantic-settings
 python-multipart
 pytest
 httpx

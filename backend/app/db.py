@@ -5,11 +5,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from app.data import DATA_DIR
+from app.config import get_settings
 
 # Overridable so tests can point at an isolated, throwaway database instead
 # of the developer's real operator accounts.
-DB_PATH = Path(os.environ.get("OPERATORS_DB_PATH", DATA_DIR / "operators.db"))
+DB_PATH = Path(os.environ.get("OPERATORS_DB_PATH", get_settings().data_dir / "operators.db"))
 
 _COLUMNS = [
     "Operator ID",
@@ -58,7 +58,7 @@ def init_db() -> None:
         conn.execute(f'CREATE TABLE IF NOT EXISTS users ("Operator ID" TEXT PRIMARY KEY, {_OTHER_COLUMNS_SQL})')
         (count,) = conn.execute("SELECT COUNT(*) FROM users").fetchone()
         if count == 0:
-            seed_path = DATA_DIR / "operators.csv"
+            seed_path = get_settings().data_dir / "operators.csv"
             if seed_path.exists():
                 seed = pd.read_csv(seed_path)
                 for column in _COLUMNS:

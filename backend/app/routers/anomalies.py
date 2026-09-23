@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.ml import detect_anomalies
+from app.task_time_ml import detect_anomalies
 
 router = APIRouter(tags=["anomalies"])
 

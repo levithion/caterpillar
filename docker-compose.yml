@@ -5,12 +5,27 @@ services:
       dockerfile: backend/Dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - ./data:/app/data:ro
+      - ./models:/app/models
+    environment:
+      - DATA_DIR=/app/data
+      - MODELS_DIR=/app/models
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   frontend:
     build:
       context: .
       dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8000/api
     ports:
-      - "5173:4173"
+      - "3000:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy

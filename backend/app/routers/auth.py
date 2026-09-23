@@ -1,4 +1,5 @@
-import pandas as pd
+from datetime import datetime, timezone
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
@@ -62,7 +63,7 @@ def signup(request: SignupRequest):
         "Skill Level": request.skill_level,
         "Certifications": "None",
         "License Expiry": "",
-        "Date of Joining": pd.Timestamp.now().date().isoformat(),
+        "Date of Joining": datetime.now(tz=timezone.utc).date().isoformat(),
         "Shift": request.shift,
         "Email": email,
         "Phone": f"{country_code} {phone_number}",
