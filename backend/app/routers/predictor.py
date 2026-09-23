@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from app.ml import load_or_train_task_time_model, predict_task_time_range
+from app.task_time_ml import load_or_train_task_time_model, predict_task_time_range
 
 router = APIRouter(tags=["predictor"])
 
