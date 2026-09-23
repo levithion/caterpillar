@@ -1,11 +1,11 @@
-Operator ID,Name,Skill Level,Certifications,License Expiry,Date of Joining,Shift,Contact
-OP1001,Tom Chen,Intermediate,Heavy Equipment Cert,2027-08-19,2020-05-16,Day,op1001@caterpillar-demo.local
-OP1002,John Singh,Expert,Heavy Equipment Cert,2027-06-13,2019-02-24,Night,op1002@caterpillar-demo.local
-OP1003,Wei Patel,Intermediate,Safety Cert Level 2,2028-01-30,2023-06-13,Night,op1003@caterpillar-demo.local
-OP1004,Amit Brown,Intermediate,Safety Cert Level 2,2028-09-21,2018-09-11,Day,op1004@caterpillar-demo.local
-OP1005,John Rossi,Beginner,"Heavy Equipment Cert, Safety Cert Level 2",2027-11-15,2021-05-19,Day,op1005@caterpillar-demo.local
-OP1006,Wei Khan,Beginner,Safety Cert Level 2,2026-11-24,2023-12-30,Night,op1006@caterpillar-demo.local
-OP1007,Carlos Khan,Expert,None,2028-08-24,2024-03-07,Day,op1007@caterpillar-demo.local
-OP1008,Sara Rossi,Intermediate,None,2027-03-14,2023-08-06,Night,op1008@caterpillar-demo.local
-OP1009,Priya Rossi,Intermediate,Heavy Equipment Cert,2027-06-04,2022-07-04,Day,op1009@caterpillar-demo.local
-OP1010,Priya Khan,Intermediate,None,2028-07-26,2024-11-06,Night,op1010@caterpillar-demo.local
+Operator ID,Name,Skill Level,Certifications,License Expiry,Date of Joining,Shift,Contact,Typical Fatigue Risk,Weight Class
+OP1001,Fatima Smith,Expert,Safety Cert Level 2,2027-04-08,2023-10-27,Night,op1001@caterpillar-demo.local,High,Light
+OP1002,Fatima Smith,Beginner,"Heavy Equipment Cert, Safety Cert Level 2",2026-11-24,2023-12-30,Night,op1002@caterpillar-demo.local,Low,Medium
+OP1003,Priya Smith,Beginner,"Heavy Equipment Cert, Safety Cert Level 2",2028-08-11,2022-02-16,Night,op1003@caterpillar-demo.local,High,Medium
+OP1004,Sara Patel,Intermediate,Heavy Equipment Cert,2027-12-05,2020-01-08,Night,op1004@caterpillar-demo.local,High,Light
+OP1005,Fatima Brown,Beginner,None,2028-07-26,2024-11-06,Day,op1005@caterpillar-demo.local,Low,Medium
+OP1006,Amit Rossi,Expert,"Heavy Equipment Cert, Safety Cert Level 2",2027-07-07,2020-08-18,Day,op1006@caterpillar-demo.local,Low,Medium
+OP1007,John Rossi,Expert,Heavy Equipment Cert,2028-01-30,2024-10-16,Day,op1007@caterpillar-demo.local,Medium,Medium
+OP1008,Priya Chen,Expert,Heavy Equipment Cert,2028-03-25,2019-05-26,Day,op1008@caterpillar-demo.local,Low,Medium
+OP1009,John Lee,Beginner,Heavy Equipment Cert,2027-02-14,2026-05-07,Night,op1009@caterpillar-demo.local,Low,Medium
+OP1010,Priya Diaz,Expert,Safety Cert Level 2,2028-04-20,2025-10-15,Day,op1010@caterpillar-demo.local,Low,Heavy

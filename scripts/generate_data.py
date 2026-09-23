@@ -130,7 +130,8 @@ with open(f"{OUT}/tasks.csv", "w", newline="") as f:
     w.writeheader()
     w.writerows(tasks)
 
-# ---------- telemetry (time series, safety + anomaly detection) ----------
+# ---------- telemetry (time series, safety + anomaly detection + coaching) ----------
+bucket_positions = ["Rest", "Hoist", "Dump", "Dig"]
 telemetry = []
 for mach in machines:
     engine_hours = mach["Total Engine Hours"] - random.uniform(50, 150)
@@ -144,17 +145,27 @@ for mach in machines:
         proximity_alert = "Yes" if proximity_dist < 2 else "No"
         excessive_idle = idling >= 60
         safety_alert = "Yes" if (seatbelt == "Unfastened" or proximity_alert == "Yes" or excessive_idle) else "No"
+        op = random.choice(operators)
+        speed = round(random.uniform(0, 25), 1)
+        bucket_position = random.choices(bucket_positions, weights=[5, 2, 2, 3])[0]
+        # Hoisting puts the most load on the hydraulics; feeds the coaching rules.
+        hydraulic_pressure = round(random.uniform(180, 280) if bucket_position == "Hoist"
+                                    else random.uniform(50, 180), 1)
+        slippage_events = random.choices([0, 1, 2, 3], weights=[12, 4, 2, 1])[0]
 
         telemetry.append({
             "Timestamp": ts.strftime("%Y-%m-%d %H:%M:%S"),
             "Machine ID": mach["Machine ID"],
-            "Operator ID": random.choice(operators)["Operator ID"],
+            "Operator ID": op["Operator ID"],
             "Engine Hours": round(engine_hours, 1),
             "Fuel Used (L)": round(random.uniform(1.5, 8.0), 1),
             "Load Cycles": random.randint(0, 15),
             "Idling Time (min)": idling,
             "Engine RPM": random.randint(700, 2200),
-            "Speed (km/h)": round(random.uniform(0, 25), 1),
+            "Speed (km/h)": speed,
+            "Hydraulic Pressure (bar)": hydraulic_pressure,
+            "Slippage Events": slippage_events,
+            "Bucket Position": bucket_position,
             "Seatbelt Status": seatbelt,
             "Proximity Distance (m)": proximity_dist,
             "Proximity Alert": proximity_alert,
@@ -166,6 +177,161 @@ with open(f"{OUT}/telemetry.csv", "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(telemetry[0].keys()))
     w.writeheader()
     w.writerows(telemetry)
+
+operators_by_id = {op["Operator ID"]: op for op in operators}
+
+# ---------- fatigue events (one row per telemetry reading; IR-camera simulation) ----------
+alert_thresholds = [(70, "Critical"), (45, "Caution")]
+fatigue_events = []
+risk_baseline = {"Low": 15, "Medium": 28, "High": 40}
+for i, row in enumerate(telemetry):
+    op = operators_by_id[row["Operator ID"]]
+    baseline = risk_baseline[op["Typical Fatigue Risk"]]
+    if op["Shift"] == "Night":
+        baseline += 10
+    # Embed a handful of deliberate fatigue-spike scenarios so the demo has
+    # something dramatic to show, without making every reading alarming.
+    is_spike = random.random() < 0.08
+    eye_closure = round(random.uniform(1.6, 2.4) if is_spike else random.uniform(0.0, 0.6), 2)
+    blink_rate = random.randint(6, 11) if is_spike else random.randint(12, 22)
+    head_pitch = random.randint(-18, -8) if is_spike else random.randint(-6, 6)
+    score = min(100, round(baseline + eye_closure * 30 + max(0, 18 - blink_rate) * 1.5 + abs(min(0, head_pitch)) * 0.8))
+    alert_level = "Normal"
+    for threshold, label in alert_thresholds:
+        if score >= threshold:
+            alert_level = label
+            break
+    haptic = "Yes" if (eye_closure > 1.5 or alert_level == "Critical") else "No"
+
+    fatigue_events.append({
+        "Timestamp": row["Timestamp"],
+        "Machine ID": row["Machine ID"],
+        "Operator ID": row["Operator ID"],
+        "Fatigue Score": score,
+        "Eye Closure Duration (s)": eye_closure,
+        "Blink Rate (per min)": blink_rate,
+        "Head Pitch (deg)": head_pitch,
+        "Alert Level": alert_level,
+        "Haptic Triggered": haptic,
+    })
+
+with open(f"{OUT}/fatigue_events.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(fatigue_events[0].keys()))
+    w.writeheader()
+    w.writerows(fatigue_events)
+
+# ---------- ergonomics (seat + chassis vibration simulation) ----------
+ergonomics = []
+wbv_running_total = {}  # per operator, cumulative exposure for the (synthetic) shift
+weight_center_bias = {"Light": 0.45, "Medium": 0.50, "Heavy": 0.55}
+for row in telemetry:
+    op = operators_by_id[row["Operator ID"]]
+    rough_terrain = random.random() < 0.15
+    chassis_x = round(random.uniform(-0.3, 0.3) + (random.uniform(0.8, 1.5) if rough_terrain else 0), 2)
+    chassis_y = round(random.uniform(-0.3, 0.3) + (random.uniform(0.8, 1.5) if rough_terrain else 0), 2)
+    chassis_z = round(random.uniform(-0.4, 0.4) + (random.uniform(1.0, 1.8) if rough_terrain else 0), 2)
+    # Active suspension damps roughly 55-70% of chassis shock before it reaches the seat.
+    damp_factor = random.uniform(0.3, 0.45)
+    seat_x = round(chassis_x * damp_factor, 2)
+    seat_y = round(chassis_y * damp_factor, 2)
+    seat_z = round(chassis_z * damp_factor, 2)
+    damping_setting = "Firm" if abs(chassis_z) > 1.0 else ("Medium" if abs(chassis_z) > 0.4 else "Soft")
+    seat_air_pressure = {"Soft": random.uniform(30, 45), "Medium": random.uniform(45, 65),
+                          "Firm": random.uniform(65, 80)}[damping_setting]
+    center_bias = weight_center_bias[op["Weight Class"]]
+    pressure_center_x = round(min(1.0, max(0.0, random.gauss(center_bias, 0.05))), 2)
+    pressure_center_y = round(min(1.0, max(0.0, random.gauss(0.5, 0.05))), 2)
+    exposure_increment = abs(seat_z) * random.uniform(1.5, 2.5)
+    wbv_running_total[row["Operator ID"]] = wbv_running_total.get(row["Operator ID"], 0) + exposure_increment
+
+    ergonomics.append({
+        "Timestamp": row["Timestamp"],
+        "Machine ID": row["Machine ID"],
+        "Operator ID": row["Operator ID"],
+        "Chassis Accel X (g)": chassis_x,
+        "Chassis Accel Y (g)": chassis_y,
+        "Chassis Accel Z (g)": chassis_z,
+        "Seat Accel X (g)": seat_x,
+        "Seat Accel Y (g)": seat_y,
+        "Seat Accel Z (g)": seat_z,
+        "Seat Pressure Center X": pressure_center_x,
+        "Seat Pressure Center Y": pressure_center_y,
+        "Seat Air Pressure (kPa)": round(seat_air_pressure, 1),
+        "Damping Setting": damping_setting,
+        "WBV Exposure Index": round(wbv_running_total[row["Operator ID"]], 1),
+    })
+
+with open(f"{OUT}/ergonomics.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(ergonomics[0].keys()))
+    w.writeheader()
+    w.writerows(ergonomics)
+
+# ---------- environment (cabin air quality + thermal monitoring) ----------
+environment = []
+for row in telemetry:
+    co2_spike = random.random() < 0.1
+    co2 = round(random.uniform(1000, 1600) if co2_spike else random.uniform(450, 950))
+    hvac_override = "Yes" if co2 > 1000 else "No"
+    fresh_air_flush = "Yes" if co2 > 1200 else "No"
+    facial_temp_spike = random.random() < 0.08
+    facial_temp = round(random.uniform(37.3, 37.9) if facial_temp_spike else random.uniform(35.9, 37.1), 1)
+
+    environment.append({
+        "Timestamp": row["Timestamp"],
+        "Machine ID": row["Machine ID"],
+        "Operator ID": row["Operator ID"],
+        "Cab CO2 (ppm)": co2,
+        "Cab PM2.5 (ug/m3)": round(random.uniform(5, 80), 1),
+        "Cab Temp (C)": round(random.uniform(20, 32), 1),
+        "Cab Humidity (%)": round(random.uniform(40, 75)),
+        "Operator Facial Temp (C)": facial_temp,
+        "HVAC Override Active": hvac_override,
+        "Fresh Air Flush Active": fresh_air_flush,
+    })
+
+with open(f"{OUT}/environment.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(environment[0].keys()))
+    w.writeheader()
+    w.writerows(environment)
+
+# ---------- coaching events (sparse, rule-triggered from telemetry) ----------
+coaching_events = []
+coach_id = 1
+for row in telemetry:
+    event_type = None
+    severity = None
+    message = None
+    action = None
+    if row["Bucket Position"] == "Hoist" and row["Speed (km/h)"] > 2:
+        event_type, severity = "hoist_while_tramming", "Warning"
+        message, action = "Hoist while tramming detected.", "Complete the lift before tramming forward."
+    elif row["Hydraulic Pressure (bar)"] > 250 and row["Engine RPM"] < 1000:
+        event_type, severity = "high_pressure_low_rpm", "Warning"
+        message, action = "High hydraulic pressure at low RPM.", "Increase RPM before continuing the heavy lift."
+    elif row["Slippage Events"] >= 2:
+        event_type, severity = "repeated_slippage", "Critical"
+        message, action = "Repeated track/wheel slippage detected.", "Reduce throttle and reposition for traction."
+    elif row["Idling Time (min)"] >= 60:
+        event_type, severity = "excessive_idling", "Info"
+        message, action = "Excessive idling detected.", "Shut down the engine if the machine will be idle for over 5 minutes."
+
+    if event_type:
+        coaching_events.append({
+            "Coaching Event ID": f"CE{coach_id:04d}",
+            "Timestamp": row["Timestamp"],
+            "Machine ID": row["Machine ID"],
+            "Operator ID": row["Operator ID"],
+            "Event Type": event_type,
+            "Severity": severity,
+            "Message": message,
+            "Recommended Action": action,
+        })
+        coach_id += 1
+
+with open(f"{OUT}/coaching_events.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(coaching_events[0].keys()))
+    w.writeheader()
+    w.writerows(coaching_events)
 
 # ---------- safety incidents (derived from flagged telemetry + a few extra) ----------
 incident_types_map = {
@@ -253,5 +419,9 @@ print("operators:", len(operators))
 print("tasks:", len(tasks))
 print("telemetry:", len(telemetry))
 print("incidents:", len(incidents))
+print("fatigue_events:", len(fatigue_events))
+print("ergonomics:", len(ergonomics))
+print("environment:", len(environment))
+print("coaching_events:", len(coaching_events))
 print("training_modules:", len(modules))
 print("training_records:", len(records))

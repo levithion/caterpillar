@@ -1,0 +1,75 @@
+Coaching Event ID,Timestamp,Machine ID,Operator ID,Event Type,Severity,Message,Recommended Action
+CE0001,2026-09-15 08:00:00,LDR002,OP1002,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0002,2026-09-15 08:00:00,CMP006,OP1008,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0003,2026-09-15 08:00:00,EXC007,OP1005,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0004,2026-09-15 08:00:00,LDR008,OP1003,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0005,2026-09-15 09:00:00,LDR008,OP1006,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0006,2026-09-15 10:00:00,LDR002,OP1007,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0007,2026-09-15 10:00:00,DMP005,OP1005,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0008,2026-09-15 12:00:00,BDZ003,OP1007,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0009,2026-09-15 12:00:00,LDR008,OP1006,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0010,2026-09-15 13:00:00,CMP006,OP1005,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0011,2026-09-15 14:00:00,LDR008,OP1005,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0012,2026-09-15 15:00:00,CMP006,OP1003,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0013,2026-09-15 16:00:00,LDR002,OP1008,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0014,2026-09-15 18:00:00,CMP006,OP1002,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0015,2026-09-15 19:00:00,LDR002,OP1006,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0016,2026-09-15 23:00:00,EXC001,OP1005,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0017,2026-09-16 00:00:00,LDR002,OP1010,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0018,2026-09-16 00:00:00,DMP005,OP1002,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0019,2026-09-16 00:00:00,LDR008,OP1006,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0020,2026-09-16 01:00:00,EXC007,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0021,2026-09-16 01:00:00,LDR008,OP1006,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0022,2026-09-16 02:00:00,LDR002,OP1002,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0023,2026-09-16 03:00:00,DMP005,OP1009,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0024,2026-09-16 04:00:00,BDZ003,OP1008,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0025,2026-09-16 04:00:00,CMP006,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0026,2026-09-16 05:00:00,LDR002,OP1006,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0027,2026-09-16 05:00:00,EXC007,OP1009,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0028,2026-09-16 05:00:00,LDR008,OP1006,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0029,2026-09-16 07:00:00,GRD004,OP1002,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0030,2026-09-16 07:00:00,EXC007,OP1008,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0031,2026-09-16 07:00:00,LDR008,OP1008,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0032,2026-09-16 08:00:00,LDR002,OP1003,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0033,2026-09-16 08:00:00,BDZ003,OP1006,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0034,2026-09-16 08:00:00,GRD004,OP1003,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0035,2026-09-16 09:00:00,EXC001,OP1001,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0036,2026-09-16 10:00:00,GRD004,OP1003,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0037,2026-09-16 12:00:00,CMP006,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0038,2026-09-16 15:00:00,EXC001,OP1008,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0039,2026-09-16 15:00:00,GRD004,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0040,2026-09-16 16:00:00,DMP005,OP1004,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0041,2026-09-16 16:00:00,LDR008,OP1009,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0042,2026-09-16 18:00:00,LDR002,OP1009,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0043,2026-09-16 18:00:00,GRD004,OP1003,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0044,2026-09-16 19:00:00,LDR008,OP1001,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0045,2026-09-16 20:00:00,CMP006,OP1002,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0046,2026-09-16 21:00:00,BDZ003,OP1009,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0047,2026-09-16 21:00:00,EXC007,OP1003,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0048,2026-09-16 23:00:00,BDZ003,OP1008,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0049,2026-09-16 23:00:00,DMP005,OP1001,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0050,2026-09-17 00:00:00,CMP006,OP1001,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0051,2026-09-17 01:00:00,GRD004,OP1008,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0052,2026-09-17 02:00:00,BDZ003,OP1003,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0053,2026-09-17 03:00:00,LDR002,OP1010,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0054,2026-09-17 04:00:00,LDR008,OP1002,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0055,2026-09-17 05:00:00,GRD004,OP1009,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0056,2026-09-17 05:00:00,DMP005,OP1009,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0057,2026-09-17 05:00:00,CMP006,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0058,2026-09-17 07:00:00,BDZ003,OP1009,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0059,2026-09-17 07:00:00,LDR008,OP1003,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0060,2026-09-17 10:00:00,LDR002,OP1009,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0061,2026-09-17 10:00:00,BDZ003,OP1003,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0062,2026-09-17 10:00:00,GRD004,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0063,2026-09-17 10:00:00,EXC007,OP1003,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0064,2026-09-17 12:00:00,EXC001,OP1001,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0065,2026-09-17 12:00:00,BDZ003,OP1010,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0066,2026-09-17 12:00:00,GRD004,OP1005,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0067,2026-09-17 14:00:00,CMP006,OP1007,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0068,2026-09-17 14:00:00,EXC007,OP1002,hoist_while_tramming,Warning,Hoist while tramming detected.,Complete the lift before tramming forward.
+CE0069,2026-09-17 14:00:00,LDR008,OP1003,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0070,2026-09-17 15:00:00,LDR002,OP1002,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0071,2026-09-17 17:00:00,EXC001,OP1008,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0072,2026-09-17 18:00:00,BDZ003,OP1006,excessive_idling,Info,Excessive idling detected.,Shut down the engine if the machine will be idle for over 5 minutes.
+CE0073,2026-09-17 18:00:00,EXC007,OP1007,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
+CE0074,2026-09-17 21:00:00,LDR002,OP1004,repeated_slippage,Critical,Repeated track/wheel slippage detected.,Reduce throttle and reposition for traction.
