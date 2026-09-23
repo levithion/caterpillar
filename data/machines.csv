@@ -1,9 +1,9 @@
-Machine ID,Type,Model,Age (yrs),Purchase Date,Last Maintenance Date,Next Maintenance Due,Total Engine Hours,Status
-EXC001,Excavator,CAT CS74,2,2024-09-23,2026-09-15,2027-03-14,2230.2,Active
-LDR002,Loader,CAT 320,2,2024-09-23,2026-07-11,2027-01-07,3870.6,Active
-BDZ003,Bulldozer,CAT 950,2,2024-09-23,2026-08-22,2027-02-18,3427.8,Active
-GRD004,Grader,CAT CS74,4,2022-09-24,2026-06-27,2026-12-24,3633.7,Active
-DMP005,Dump Truck,CAT 950,5,2021-09-24,2026-09-18,2027-03-17,4430.3,Active
-CMP006,Compactor,CAT D6,3,2023-09-24,2026-08-22,2027-02-18,1331.5,Active
-EXC007,Excavator,CAT 735,6,2020-09-24,2026-08-05,2027-02-01,2175.5,Active
-LDR008,Loader,CAT 320,8,2018-09-25,2026-07-12,2027-01-08,5860.2,Active
+Machine ID,Type,Model,Has Active Suspension,Status
+EXC001,Excavator,CAT CS74,Yes,Active
+LDR002,Loader,CAT D6,Yes,Active
+BDZ003,Bulldozer,CAT CS74,Yes,Active
+GRD004,Grader,CAT 735,Yes,Active
+DMP005,Dump Truck,CAT 320,Yes,Active
+CMP006,Compactor,CAT 950,No,Active
+EXC007,Excavator,CAT 735,Yes,Idle
+LDR008,Loader,CAT CS74,No,Active
