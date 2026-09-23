@@ -23,9 +23,12 @@ function randomOf<T>(options: T[]): T {
 export function Predictor() {
   const [feed, setFeed] = useState<StreamEntry[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [running, setRunning] = useState(false);
   const nextId = useRef(0);
 
   useEffect(() => {
+    if (!running) return;
+
     let cancelled = false;
 
     const tick = async () => {
@@ -58,7 +61,7 @@ export function Predictor() {
       cancelled = true;
       clearInterval(interval);
     };
-  }, []);
+  }, [running]);
 
   const latest = feed[0];
   const history = feed.slice(1);
@@ -71,11 +74,13 @@ export function Predictor() {
         each one's completion time with a confidence range as it arrives.
       </p>
 
+      <button onClick={() => setRunning((r) => !r)}>{running ? "Stop" : "Predict"}</button>
+
       {error && <p className="error">{error}</p>}
 
       {latest ? (
         <div className="result">
-          <span className="badge">● live</span>
+          <span className="badge">{running ? "● live" : "■ stopped"}</span>
           <div>
             <strong>{latest.taskType}</strong> · {latest.weather} · {latest.skill} · Machine age{" "}
             {latest.machineAge} yrs
@@ -88,7 +93,7 @@ export function Predictor() {
           </div>
         </div>
       ) : (
-        !error && <p>Waiting for the first task…</p>
+        !error && <p>{running ? "Waiting for the first task…" : "Click Predict to start the stream."}</p>
       )}
 
       {history.length > 0 && (
