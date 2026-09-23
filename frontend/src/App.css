@@ -164,6 +164,50 @@ th {
   height: fit-content;
 }
 
+.login-panel {
+  max-width: 360px;
+  margin: 4rem auto;
+}
+
+.login-panel .form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.switch-mode {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.session {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.session button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 .result {
   margin-top: 1rem;
   font-size: 1.1rem;

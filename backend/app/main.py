@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import (
     anomalies,
+    auth,
     coaching,
     dashboard,
     environment,
@@ -32,6 +33,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router)
 app.include_router(dashboard.router)
 app.include_router(predictor.router)
 app.include_router(safety.router)
