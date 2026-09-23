@@ -65,6 +65,10 @@ main {
   margin-top: 0;
 }
 
+.error {
+  color: #ef4444;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -158,6 +162,71 @@ th {
   cursor: pointer;
   font-weight: 600;
   height: fit-content;
+}
+
+.login-panel {
+  max-width: 420px;
+  margin: 3rem auto;
+}
+
+.login-panel .form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.phone-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.phone-row select {
+  flex: 0 0 auto;
+  max-width: 45%;
+}
+
+.phone-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.switch-mode {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.session {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.session button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .result {

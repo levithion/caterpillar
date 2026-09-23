@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api } from "../api";
+import { predictorApi, type TaskTimePrediction } from "../api/predictor";
 
 const TASK_TYPES = ["Earth Excavation", "Trenching", "Material Loading", "Grading", "Demolition", "Compaction", "Hauling"];
 const WEATHERS = ["Sunny", "Rainy", "Cloudy", "Windy", "Foggy"];
@@ -10,19 +10,23 @@ export function Predictor() {
   const [weather, setWeather] = useState(WEATHERS[0]);
   const [skill, setSkill] = useState(SKILLS[0]);
   const [machineAge, setMachineAge] = useState(3);
-  const [result, setResult] = useState<number | null>(null);
+  const [result, setResult] = useState<TaskTimePrediction | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const predict = async () => {
     setLoading(true);
+    setError(null);
     try {
-      const res = await api.predictTaskTime({
+      const res = await predictorApi.predictTaskTime({
         task_type: taskType,
         weather,
         skill_level: skill,
         machine_age: machineAge,
       });
-      setResult(res.predicted_minutes);
+      setResult(res);
+    } catch {
+      setError("Prediction failed. Is the backend running?");
     } finally {
       setLoading(false);
     }
@@ -70,9 +74,13 @@ export function Predictor() {
           {loading ? "Predicting…" : "Predict"}
         </button>
       </div>
+      {error && <p className="error">{error}</p>}
       {result !== null && (
         <div className="result">
-          Estimated time: <strong>{result} min</strong>
+          Estimated time: <strong>{result.predicted_minutes} min</strong>
+          <div>
+            Confidence range: {result.lower_bound_minutes}–{result.upper_bound_minutes} min
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { api, type Row } from "../api";
+import { trainingApi } from "../api/training";
+import type { Row } from "../api/client";
 
 export function Training() {
   const [modules, setModules] = useState<Row[]>([]);
@@ -8,12 +9,12 @@ export function Training() {
   const [selectedOperator, setSelectedOperator] = useState<string>("");
 
   useEffect(() => {
-    api.trainingModules().then(setModules);
-    api.operators().then(setOperators);
+    trainingApi.trainingModules().then(setModules);
+    trainingApi.operators().then(setOperators);
   }, []);
 
   useEffect(() => {
-    api.trainingRecords(selectedOperator || undefined).then(setRecords);
+    trainingApi.trainingRecords(selectedOperator || undefined).then(setRecords);
   }, [selectedOperator]);
 
   const moduleById: Record<string, Row> = Object.fromEntries(modules.map((m) => [m["Module ID"], m]));

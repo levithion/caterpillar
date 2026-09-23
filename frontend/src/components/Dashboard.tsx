@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
-import { api, type Row } from "../api";
+import { dashboardApi } from "../api/dashboard";
+import type { Row } from "../api/client";
 
 export function Dashboard() {
   const [tasks, setTasks] = useState<Row[]>([]);
   const [machines, setMachines] = useState<Row[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    api.tasks().then(setTasks);
-    api.machines().then(setMachines);
+    Promise.all([dashboardApi.tasks(), dashboardApi.machines()])
+      .then(([taskRows, machineRows]) => {
+        setTasks(taskRows);
+        setMachines(machineRows);
+      })
+      .catch(() => setError("Couldn't load the dashboard. Is the backend running?"))
+      .finally(() => setLoading(false));
   }, []);
 
   const machineById: Record<string, Row> = Object.fromEntries(machines.map((m) => [m["Machine ID"], m]));
+
+  if (loading) return <div className="panel">Loading dashboard…</div>;
+  if (error) return <div className="panel error">{error}</div>;
 
   return (
     <div className="panel">
