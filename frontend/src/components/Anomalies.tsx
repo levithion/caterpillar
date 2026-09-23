@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { api, type Row } from "../api";
+import { anomaliesApi } from "../api/anomalies";
+import type { Row } from "../api/client";
 
 export function Anomalies() {
   const [anomalies, setAnomalies] = useState<Row[]>([]);
 
   useEffect(() => {
-    api.anomalies().then(setAnomalies);
+    anomaliesApi.anomalies().then(setAnomalies);
   }, []);
 
   return (

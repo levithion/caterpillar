@@ -198,15 +198,15 @@ don't exist in the current schema.
 ## Execution steps (remaining)
 
 ### Phase 1 — Harden the existing five outcomes
-- [ ] Cache `load_all()` (currently re-reads every CSV on every request) — load once
+- [x] Cache `load_all()` (currently re-reads every CSV on every request) — load once
       at startup, or memoize with a `functools.lru_cache` / file-mtime check.
-- [ ] Persist the trained task-time model instead of retraining lazily on first
+- [x] Persist the trained task-time model instead of retraining lazily on first
       request (train at startup, or cache to disk with `joblib`).
-- [ ] Add `/api/dashboard/{operator_id}` or `?date=` filtering so the frontend
+- [x] Add `/api/dashboard/{operator_id}` or `?date=` filtering so the frontend
       doesn't need to fetch and filter all tasks client-side.
-- [ ] Basic input validation / error responses for unknown machine/operator IDs.
-- [ ] Tests: at least smoke tests for each endpoint and the anomaly/prediction logic
-      (`pytest` — not yet in `requirements.txt`).
+- [x] Basic input validation / error responses for unknown machine/operator IDs.
+- [x] Tests: at least smoke tests for each endpoint and the anomaly/prediction logic
+      (`pytest` — now in `requirements.txt`, 15 tests passing).
 - [ ] Seatbelt compliance: surface live/most-recent `Seatbelt Status` per
       machine-operator pair, not just raw telemetry rows.
 - [ ] Proximity hazards: turn `Proximity Distance` / `Proximity Alert` into a
@@ -219,10 +219,14 @@ don't exist in the current schema.
 - [ ] Expand anomaly detection beyond idling/fuel z-scores to pattern-based flags
       (repeated `Safety Alert Triggered` events, RPM/load-cycle combinations).
 - [ ] Surface anomalies in the Dashboard tab (currently its own separate tab).
-- [ ] Confidence range on task-time predictions (quantile regression or the
-      RandomForest's per-tree spread); feed predicted time into the Dashboard
-      task list ("est. vs predicted").
-- [ ] Loading/error states for all `fetch` calls in `api.ts`.
+- [x] Confidence range on task-time predictions (RandomForest per-tree spread,
+      10th/90th percentile), shown in `Predictor.tsx`.
+- [ ] Feed predicted time into the Dashboard task list ("est. vs predicted") —
+      `tasks.csv` already carries `Predicted Time (min)` + bounds columns,
+      `Dashboard.tsx` doesn't render them yet.
+- [x] Loading/error states for all `fetch` calls — done for `api/dashboard.ts`
+      and `api/predictor.ts`; `api/{safety,training,anomalies}.ts` are each
+      still on their owning member's list below.
 
 ### Phase 2 — Add the four operator-augmentation features (simulated, edge-ready)
 - [x] Extend `scripts/generate_data.py` for the new/extended CSVs above (fatigue,
@@ -290,16 +294,26 @@ Current repo files, for reference:
 `backend/app/routers/{dashboard,predictor}.py`,
 `frontend/src/api/{dashboard,predictor}.ts`,
 `frontend/src/components/{Dashboard,Predictor}.tsx`, CI config, `docker-compose.yml`.
-- [ ] One-time: split `main.py` into `routers/`, scaffold empty router files for
+- [x] One-time: split `main.py` into `routers/`, scaffold empty router files for
       Members 2–4, split `api.ts` into `api/` the same way
-- [ ] Cache `load_all()` (startup load or `lru_cache`/mtime check)
-- [ ] Persist/train-at-startup the task-time model (`joblib` cache)
-- [ ] `/api/dashboard/{operator_id}` or `?date=` filtering
-- [ ] Input validation / error responses for unknown machine/operator IDs
-- [ ] Confidence range on task-time predictions, shown in `Predictor.tsx`
+- [x] Cache `load_all()` (mtime-based: reloads only if a CSV changed on disk)
+- [x] Persist/train-at-startup the task-time model (`joblib` cache, trained in
+      a FastAPI `lifespan` hook so the first prediction request isn't the one
+      paying for training)
+- [x] `/api/dashboard` with `?operator_id=` and `?task_date=` filtering
+      (aggregated tasks + relevant machines + status summary in one call)
+- [x] Input validation / error responses for unknown machine/operator IDs
+      (404s on `/api/tasks`, `/api/dashboard`, `/api/telemetry`,
+      `/api/training/records`)
+- [x] Confidence range on task-time predictions (10th/90th percentile of the
+      RandomForest's per-tree spread), shown in `Predictor.tsx`
 - [ ] Real dashboard landing view: import and place summary components exported
-      by Members 2–4 (their files, not touched by Member 1 directly)
-- [ ] Smoke tests for every endpoint (`pytest`); `docker-compose`; CI (lint + test)
+      by Members 2–4 (their files, not touched by Member 1 directly) — blocked
+      on Members 2–3's features existing; `Dashboard.tsx` already has loading/
+      error states ready for it
+- [x] Smoke tests for every endpoint (`pytest`, 15 passing); `docker-compose.yml`
+      + `backend/Dockerfile` + `frontend/Dockerfile`; CI (`.github/workflows/ci.yml`
+      — ruff + oxlint + pytest + frontend build)
 
 ### Member 2 — Safety & coaching (_name: ____)
 **Files:** `backend/app/routers/{safety,coaching}.py`,
