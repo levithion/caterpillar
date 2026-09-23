@@ -5,6 +5,8 @@ export type Operator = {
   Name: string;
   "Skill Level": string;
   Shift: string;
+  Email: string;
+  Phone: string;
   [key: string]: string | number | null;
 };
 
@@ -22,7 +24,14 @@ async function post<T>(path: string, body: unknown): Promise<T> {
 }
 
 export const authApi = {
-  signup: (payload: { name: string; skill_level: string; shift: string }) =>
-    post<Operator>("/operators/signup", payload),
-  login: (operatorId: string) => post<Operator>("/operators/login", { operator_id: operatorId }),
+  signup: (payload: {
+    name: string;
+    email: string;
+    country_code: string;
+    phone_number: string;
+    password: string;
+    skill_level: string;
+    shift: string;
+  }) => post<Operator>("/operators/signup", payload),
+  login: (payload: { identifier: string; password: string }) => post<Operator>("/operators/login", payload),
 };
