@@ -65,6 +65,10 @@ main {
   margin-top: 0;
 }
 
+.error {
+  color: #ef4444;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

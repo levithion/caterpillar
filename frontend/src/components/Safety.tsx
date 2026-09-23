@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { api, type Row } from "../api";
+import { safetyApi } from "../api/safety";
+import type { Row } from "../api/client";
 
 export function Safety() {
   const [telemetry, setTelemetry] = useState<Row[]>([]);
   const [incidents, setIncidents] = useState<Row[]>([]);
 
   useEffect(() => {
-    api.telemetry().then(setTelemetry);
-    api.incidents().then(setIncidents);
+    safetyApi.telemetry().then(setTelemetry);
+    safetyApi.incidents().then(setIncidents);
   }, []);
 
   const alerts = telemetry.filter((t) => t["Safety Alert Triggered"] === "Yes").slice(-10).reverse();
