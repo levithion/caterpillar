@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app import db
 from app.routers import (
     anomalies,
     auth,
@@ -18,6 +19,9 @@ from app.routers import (
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
+    # Create (and, on first run, seed) the operators database before
+    # anything reads from it.
+    db.init_db()
     # Train (or load the cached joblib model) once at startup instead of on
     # the first prediction request, so that request doesn't pay for training.
     predictor.get_model()

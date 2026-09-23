@@ -1,6 +1,7 @@
 import pytest
-from app.main import app
 from fastapi.testclient import TestClient
+
+from app.main import app
 
 
 @pytest.fixture()
@@ -75,3 +76,57 @@ def test_predict_task_time_returns_point_and_range(client):
 def test_predict_task_time_rejects_bad_payload(client):
     response = client.post("/api/predict/task-time", json={"task_type": "Trenching"})
     assert response.status_code == 422
+
+
+def _signup_payload(email: str) -> dict:
+    return {
+        "name": "Test Operator",
+        "email": email,
+        "country_code": "+1",
+        "phone_number": "5551234567",
+        "password": "hunter22",
+        "skill_level": "Beginner",
+        "shift": "Day",
+    }
+
+
+def test_signup_creates_operator_in_database(client):
+    response = client.post("/api/operators/signup", json=_signup_payload("new.operator@example.com"))
+    assert response.status_code == 200
+    body = response.json()
+    assert body["Name"] == "Test Operator"
+    assert "Password Hash" not in body
+    assert "Password Salt" not in body
+
+    # The new account is immediately visible through the regular operators
+    # listing, proving it was persisted to the database rather than just
+    # held in memory for the response.
+    listing = client.get("/api/operators")
+    assert any(op["Operator ID"] == body["Operator ID"] for op in listing.json())
+
+
+def test_signup_rejects_duplicate_email(client):
+    payload = _signup_payload("duplicate@example.com")
+    first = client.post("/api/operators/signup", json=payload)
+    assert first.status_code == 200
+
+    second = client.post("/api/operators/signup", json=payload)
+    assert second.status_code == 400
+
+
+def test_login_succeeds_with_correct_password_and_fails_with_wrong_one(client):
+    payload = _signup_payload("login.check@example.com")
+    signup_response = client.post("/api/operators/signup", json=payload)
+    operator_id = signup_response.json()["Operator ID"]
+
+    ok = client.post("/api/operators/login", json={"identifier": payload["email"], "password": payload["password"]})
+    assert ok.status_code == 200
+    assert ok.json()["Operator ID"] == operator_id
+
+    bad_password = client.post(
+        "/api/operators/login", json={"identifier": payload["email"], "password": "wrong-password"}
+    )
+    assert bad_password.status_code == 401
+
+    unknown_user = client.post("/api/operators/login", json={"identifier": "nobody@example.com", "password": "x"})
+    assert unknown_user.status_code == 404

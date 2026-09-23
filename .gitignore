@@ -4,6 +4,10 @@ __pycache__/
 *.pyc
 backend/app/_cache/
 
+# Operator accounts database (seeded from data/operators.csv at first run,
+# then mutated by every signup — not part of the versioned synthetic dataset)
+data/operators.db
+
 # Node
 frontend/node_modules/
 frontend/dist/
