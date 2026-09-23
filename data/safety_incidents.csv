@@ -1,27 +1,45 @@
 Incident ID,Timestamp,Machine ID,Operator ID,Incident Type,Severity,Location,Description,Action Taken,Resolved
-INC0001,2026-09-15 08:00:00,LDR008,OP1006,Seatbelt Violation,Medium,Site D - Residential,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,No
-INC0002,2026-09-15 10:00:00,LDR002,OP1007,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,Yes
-INC0003,2026-09-15 12:00:00,EXC007,OP1007,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Logged only,Yes
-INC0004,2026-09-15 13:00:00,BDZ003,OP1008,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
-INC0005,2026-09-15 15:00:00,EXC007,OP1005,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Supervisor alerted,Yes
-INC0006,2026-09-16 00:00:00,GRD004,OP1007,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
-INC0007,2026-09-16 02:00:00,CMP006,OP1003,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Supervisor alerted,No
-INC0008,2026-09-16 03:00:00,EXC001,OP1008,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,No
-INC0009,2026-09-16 03:00:00,DMP005,OP1009,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
-INC0010,2026-09-16 08:00:00,DMP005,OP1003,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,Yes
-INC0011,2026-09-16 11:00:00,DMP005,OP1002,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,No
-INC0012,2026-09-16 14:00:00,DMP005,OP1008,Proximity Breach,High,Site C - Highway Ext,Proximity Breach detected during routine telemetry monitoring.,Operator notified,Yes
-INC0013,2026-09-16 19:00:00,BDZ003,OP1001,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Task paused,Yes
-INC0014,2026-09-16 19:00:00,DMP005,OP1007,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Operator notified,No
-INC0015,2026-09-17 00:00:00,EXC001,OP1007,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Task paused,Yes
-INC0016,2026-09-17 01:00:00,LDR008,OP1008,Proximity Breach,High,Site A - North Yard,Proximity Breach detected during routine telemetry monitoring.,Task paused,Yes
-INC0017,2026-09-17 02:00:00,GRD004,OP1006,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Supervisor alerted,Yes
-INC0018,2026-09-17 04:00:00,LDR002,OP1010,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Operator notified,Yes
-INC0019,2026-09-17 07:00:00,DMP005,OP1001,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Logged only,No
-INC0020,2026-09-17 08:00:00,CMP006,OP1007,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Logged only,Yes
-INC0021,2026-09-17 09:00:00,LDR008,OP1010,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,Yes
-INC0022,2026-09-17 10:00:00,LDR002,OP1003,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,Yes
-INC0023,2026-09-17 11:00:00,CMP006,OP1002,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Logged only,Yes
-INC0024,2026-09-17 15:00:00,LDR002,OP1003,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,No
-INC0025,2026-09-17 21:00:00,GRD004,OP1007,Proximity Breach,High,Site B - Quarry,Proximity Breach detected during routine telemetry monitoring.,Operator notified,Yes
-INC0026,2026-09-17 21:00:00,EXC007,OP1007,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Operator notified,No
+INC0001,2026-09-15 11:00:00,EXC001,OP1009,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
+INC0002,2026-09-15 12:00:00,DMP005,OP1009,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Logged only,Yes
+INC0003,2026-09-15 13:00:00,EXC001,OP1010,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
+INC0004,2026-09-15 13:00:00,LDR002,OP1002,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,Yes
+INC0005,2026-09-15 13:00:00,CMP006,OP1003,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Operator notified,No
+INC0006,2026-09-15 14:00:00,GRD004,OP1003,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Task paused,No
+INC0007,2026-09-15 17:00:00,DMP005,OP1001,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0008,2026-09-15 18:00:00,EXC007,OP1009,Excessive Idling,Low,Site D - Residential,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0009,2026-09-15 21:00:00,EXC007,OP1008,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0010,2026-09-15 21:00:00,LDR008,OP1007,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
+INC0011,2026-09-16 00:00:00,GRD004,OP1002,Excessive Idling,Low,Site A - North Yard,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
+INC0012,2026-09-16 05:00:00,LDR002,OP1006,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,Yes
+INC0013,2026-09-16 05:00:00,LDR008,OP1010,Proximity Breach,High,Site B - Quarry,Proximity Breach detected during routine telemetry monitoring.,Operator notified,Yes
+INC0014,2026-09-16 06:00:00,EXC007,OP1008,Excessive Idling,Low,Site D - Residential,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0015,2026-09-16 08:00:00,GRD004,OP1001,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,No
+INC0016,2026-09-16 09:00:00,DMP005,OP1003,Seatbelt Violation,Medium,Site D - Residential,Seatbelt Violation detected during routine telemetry monitoring.,Operator notified,Yes
+INC0017,2026-09-16 09:00:00,LDR008,OP1008,Proximity Breach,High,Site A - North Yard,Proximity Breach detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0018,2026-09-16 10:00:00,EXC001,OP1007,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Task paused,Yes
+INC0019,2026-09-16 11:00:00,EXC001,OP1008,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Operator notified,Yes
+INC0020,2026-09-16 13:00:00,GRD004,OP1008,Seatbelt Violation,Medium,Site A - North Yard,Seatbelt Violation detected during routine telemetry monitoring.,Operator notified,Yes
+INC0021,2026-09-16 13:00:00,CMP006,OP1010,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,Yes
+INC0022,2026-09-16 15:00:00,LDR002,OP1004,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,Yes
+INC0023,2026-09-16 16:00:00,BDZ003,OP1006,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,Yes
+INC0024,2026-09-16 17:00:00,EXC001,OP1006,Proximity Breach,High,Site A - North Yard,Proximity Breach detected during routine telemetry monitoring.,Task paused,No
+INC0025,2026-09-16 18:00:00,DMP005,OP1001,Excessive Idling,Low,Site C - Highway Ext,Excessive Idling detected during routine telemetry monitoring.,Task paused,No
+INC0026,2026-09-16 18:00:00,LDR008,OP1009,Proximity Breach,High,Site A - North Yard,Proximity Breach detected during routine telemetry monitoring.,Operator notified,No
+INC0027,2026-09-16 19:00:00,BDZ003,OP1008,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0028,2026-09-16 19:00:00,GRD004,OP1005,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Logged only,No
+INC0029,2026-09-16 20:00:00,GRD004,OP1007,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Operator notified,Yes
+INC0030,2026-09-16 21:00:00,LDR008,OP1001,Excessive Idling,Low,Site D - Residential,Excessive Idling detected during routine telemetry monitoring.,Task paused,Yes
+INC0031,2026-09-16 23:00:00,GRD004,OP1009,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Supervisor alerted,Yes
+INC0032,2026-09-17 00:00:00,BDZ003,OP1001,Seatbelt Violation,Medium,Site D - Residential,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,Yes
+INC0033,2026-09-17 05:00:00,LDR002,OP1009,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Logged only,Yes
+INC0034,2026-09-17 05:00:00,GRD004,OP1005,Excessive Idling,Low,Site D - Residential,Excessive Idling detected during routine telemetry monitoring.,Task paused,Yes
+INC0035,2026-09-17 06:00:00,LDR008,OP1002,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Logged only,Yes
+INC0036,2026-09-17 07:00:00,EXC001,OP1007,Seatbelt Violation,Medium,Site D - Residential,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,Yes
+INC0037,2026-09-17 09:00:00,EXC007,OP1003,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Logged only,Yes
+INC0038,2026-09-17 10:00:00,GRD004,OP1004,Seatbelt Violation,Medium,Site D - Residential,Seatbelt Violation detected during routine telemetry monitoring.,Supervisor alerted,No
+INC0039,2026-09-17 15:00:00,LDR002,OP1002,Excessive Idling,Low,Site B - Quarry,Excessive Idling detected during routine telemetry monitoring.,Task paused,Yes
+INC0040,2026-09-17 15:00:00,EXC007,OP1005,Proximity Breach,High,Site A - North Yard,Proximity Breach detected during routine telemetry monitoring.,Task paused,Yes
+INC0041,2026-09-17 16:00:00,CMP006,OP1005,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Operator notified,Yes
+INC0042,2026-09-17 18:00:00,DMP005,OP1008,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,No
+INC0043,2026-09-17 18:00:00,CMP006,OP1001,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,Yes
+INC0044,2026-09-18 00:00:00,LDR002,OP1006,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Supervisor alerted,Yes

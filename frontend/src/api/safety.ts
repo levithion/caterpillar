@@ -1,6 +1,6 @@
-const BASE_URL = "http://localhost:8000/api";
+import { get, getOne, BASE_URL, type Row } from "./client";
 
-export type Row = Record<string, string | number | null>;
+export type { Row };
 
 export interface SafetySummaryData {
   seatbelt_compliance: Row[];
@@ -8,16 +8,8 @@ export interface SafetySummaryData {
   latest_fatigue: Row[];
 }
 
-export interface ApiState<T> {
-  data: T | null;
-  loading: boolean;
-  error: string | null;
-}
-
 export async function getIncidents(): Promise<Row[]> {
-  const res = await fetch(`${BASE_URL}/incidents`);
-  if (!res.ok) throw new Error("Failed to load incidents");
-  return res.json();
+  return get("/incidents");
 }
 
 export async function createIncident(payload: {
@@ -39,7 +31,5 @@ export async function createIncident(payload: {
 }
 
 export async function getSafetySummary(): Promise<SafetySummaryData> {
-  const res = await fetch(`${BASE_URL}/safety/summary`);
-  if (!res.ok) throw new Error("Failed to load safety summary");
-  return res.json();
+  return getOne<SafetySummaryData>("/safety/summary");
 }

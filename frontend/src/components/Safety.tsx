@@ -6,6 +6,7 @@ import {
   type Row,
   type SafetySummaryData,
 } from "../api/safety";
+import { get } from "../api/client";
 
 function useSafetySummary() {
   const [summary, setSummary] = useState<SafetySummaryData | null>(null);
@@ -93,13 +94,11 @@ export function Safety() {
   const [formSubmitting, setFormSubmitting] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/operators")
-      .then((r) => r.json())
-      .then(setOperators)
+    get("/operators")
+      .then((rows) => setOperators(rows))
       .catch(() => setOperators([]));
-    fetch("http://localhost:8000/api/machines")
-      .then((r) => r.json())
-      .then(setMachines)
+    get("/machines")
+      .then((rows) => setMachines(rows))
       .catch(() => setMachines([]));
   }, []);
 

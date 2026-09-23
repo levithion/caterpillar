@@ -27,13 +27,21 @@ function CoachingCard({ event }: { event: Row }) {
     high_pressure_low_rpm: "⚙️",
     repeated_slippage: "🔄",
     hard_braking: "🛑",
+    excessive_idling: "😴",
+  };
+  const typeLabels: Record<string, string> = {
+    hoist_while_tramming: "Hoist While Tramming",
+    high_pressure_low_rpm: "High Pressure, Low RPM",
+    repeated_slippage: "Repeated Slippage",
+    hard_braking: "Hard Braking",
+    excessive_idling: "Excessive Idling",
   };
 
   return (
     <div className={`card coaching-card severity-${severity}`}>
       <div className="coaching-header">
         <span className="coaching-icon">{typeToIcon[String(event["Event Type"])] || "💡"}</span>
-        <strong>{event["Event Type"]}</strong>
+        <strong>{typeLabels[String(event["Event Type"])] || event["Event Type"]}</strong>
         <span className={`badge severity-${severity}`}>{event["Severity"]}</span>
       </div>
       <div className="coaching-message">{event["Message"]}</div>
@@ -75,7 +83,7 @@ export function Coaching() {
           {events.length === 0 ? (
             <p>No coaching events for the selected filter.</p>
           ) : (
-            events.map((e) => <CoachingCard event={e} key={e["Event ID"] as string} />)
+            events.map((e) => <CoachingCard event={e} key={e["Coaching Event ID"] as string} />)
           )}
         </div>
       )}
