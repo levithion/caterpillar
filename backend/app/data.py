@@ -16,6 +16,7 @@ def load_all() -> dict[str, pd.DataFrame]:
         "tasks": _load("tasks.csv"),
         "telemetry": _load("telemetry.csv"),
         "incidents": _load("safety_incidents.csv"),
+        "coaching_events": _load("coaching_events.csv"),
         "training_modules": _load("training_modules.csv"),
         "training_records": _load("training_records.csv"),
     }

@@ -1,0 +1,197 @@
+Event ID,Timestamp,Machine ID,Operator ID,Event Type,Severity,Message,Recommended Action
+COACH0001,2026-09-15 08:00:00,GRD004,OP1010,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0002,2026-09-15 08:00:00,CMP006,OP1002,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0003,2026-09-15 08:00:00,LDR008,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0004,2026-09-15 08:00:00,LDR008,OP1006,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0005,2026-09-15 09:00:00,EXC001,OP1008,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0006,2026-09-15 09:00:00,BDZ003,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0007,2026-09-15 09:00:00,GRD004,OP1003,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0008,2026-09-15 09:00:00,GRD004,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0009,2026-09-15 09:00:00,DMP005,OP1001,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0010,2026-09-15 10:00:00,BDZ003,OP1005,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0011,2026-09-15 10:00:00,CMP006,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0012,2026-09-15 10:00:00,LDR008,OP1004,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0013,2026-09-15 11:00:00,EXC001,OP1004,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0014,2026-09-15 11:00:00,LDR008,OP1004,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0015,2026-09-15 11:00:00,LDR008,OP1004,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0016,2026-09-15 12:00:00,DMP005,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0017,2026-09-15 12:00:00,DMP005,OP1008,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0018,2026-09-15 12:00:00,DMP005,OP1008,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0019,2026-09-15 12:00:00,DMP005,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0020,2026-09-15 12:00:00,EXC007,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0021,2026-09-15 13:00:00,BDZ003,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0022,2026-09-15 13:00:00,BDZ003,OP1008,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0023,2026-09-15 13:00:00,CMP006,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0024,2026-09-15 13:00:00,CMP006,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0025,2026-09-15 14:00:00,LDR008,OP1001,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0026,2026-09-15 15:00:00,LDR002,OP1006,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0027,2026-09-15 15:00:00,DMP005,OP1003,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0028,2026-09-15 15:00:00,DMP005,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0029,2026-09-15 15:00:00,CMP006,OP1003,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0030,2026-09-15 15:00:00,EXC007,OP1005,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0031,2026-09-15 15:00:00,EXC007,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0032,2026-09-15 17:00:00,LDR002,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0033,2026-09-15 18:00:00,BDZ003,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0034,2026-09-15 18:00:00,BDZ003,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0035,2026-09-15 18:00:00,CMP006,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0036,2026-09-15 18:00:00,CMP006,OP1008,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0037,2026-09-15 18:00:00,CMP006,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0038,2026-09-15 19:00:00,LDR002,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0039,2026-09-15 19:00:00,BDZ003,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0040,2026-09-15 19:00:00,DMP005,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0041,2026-09-15 20:00:00,DMP005,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0042,2026-09-15 20:00:00,LDR008,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0043,2026-09-15 20:00:00,LDR008,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0044,2026-09-15 21:00:00,EXC001,OP1009,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0045,2026-09-15 21:00:00,EXC001,OP1009,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0046,2026-09-15 21:00:00,LDR002,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0047,2026-09-15 21:00:00,EXC007,OP1004,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0048,2026-09-15 22:00:00,LDR002,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0049,2026-09-15 22:00:00,LDR002,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0050,2026-09-15 22:00:00,EXC007,OP1009,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0051,2026-09-15 22:00:00,EXC007,OP1009,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0052,2026-09-15 22:00:00,EXC007,OP1009,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0053,2026-09-15 23:00:00,BDZ003,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0054,2026-09-15 23:00:00,DMP005,OP1004,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0055,2026-09-15 23:00:00,LDR008,OP1007,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0056,2026-09-16 00:00:00,DMP005,OP1006,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0057,2026-09-16 02:00:00,BDZ003,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0058,2026-09-16 02:00:00,BDZ003,OP1008,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0059,2026-09-16 02:00:00,BDZ003,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0060,2026-09-16 02:00:00,GRD004,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0061,2026-09-16 02:00:00,GRD004,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0062,2026-09-16 02:00:00,CMP006,OP1003,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0063,2026-09-16 02:00:00,CMP006,OP1003,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0064,2026-09-16 02:00:00,CMP006,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0065,2026-09-16 02:00:00,EXC007,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0066,2026-09-16 03:00:00,EXC001,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0067,2026-09-16 03:00:00,DMP005,OP1009,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0068,2026-09-16 03:00:00,DMP005,OP1009,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0069,2026-09-16 03:00:00,LDR008,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0070,2026-09-16 05:00:00,EXC001,OP1005,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0071,2026-09-16 05:00:00,BDZ003,OP1005,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0072,2026-09-16 06:00:00,DMP005,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0073,2026-09-16 06:00:00,DMP005,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0074,2026-09-16 07:00:00,EXC001,OP1010,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0075,2026-09-16 07:00:00,LDR002,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0076,2026-09-16 07:00:00,EXC007,OP1009,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0077,2026-09-16 09:00:00,BDZ003,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0078,2026-09-16 10:00:00,LDR002,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0079,2026-09-16 10:00:00,GRD004,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0080,2026-09-16 11:00:00,BDZ003,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0081,2026-09-16 11:00:00,BDZ003,OP1002,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0082,2026-09-16 11:00:00,DMP005,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0083,2026-09-16 11:00:00,DMP005,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0084,2026-09-16 11:00:00,DMP005,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0085,2026-09-16 11:00:00,EXC007,OP1009,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0086,2026-09-16 11:00:00,LDR008,OP1005,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0087,2026-09-16 11:00:00,LDR008,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0088,2026-09-16 12:00:00,EXC001,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0089,2026-09-16 12:00:00,BDZ003,OP1009,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0090,2026-09-16 12:00:00,EXC007,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0091,2026-09-16 12:00:00,EXC007,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0092,2026-09-16 12:00:00,LDR008,OP1010,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0093,2026-09-16 14:00:00,GRD004,OP1004,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0094,2026-09-16 14:00:00,GRD004,OP1004,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0095,2026-09-16 14:00:00,CMP006,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0096,2026-09-16 14:00:00,CMP006,OP1006,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0097,2026-09-16 14:00:00,EXC007,OP1007,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0098,2026-09-16 15:00:00,EXC001,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0099,2026-09-16 15:00:00,EXC007,OP1008,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0100,2026-09-16 16:00:00,GRD004,OP1004,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0101,2026-09-16 16:00:00,LDR008,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0102,2026-09-16 17:00:00,LDR002,OP1009,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0103,2026-09-16 17:00:00,LDR002,OP1009,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0104,2026-09-16 17:00:00,CMP006,OP1007,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0105,2026-09-16 17:00:00,LDR008,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0106,2026-09-16 18:00:00,LDR002,OP1004,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0107,2026-09-16 18:00:00,BDZ003,OP1009,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0108,2026-09-16 18:00:00,DMP005,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0109,2026-09-16 18:00:00,LDR008,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0110,2026-09-16 18:00:00,LDR008,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0111,2026-09-16 19:00:00,CMP006,OP1006,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0112,2026-09-16 19:00:00,EXC007,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0113,2026-09-16 19:00:00,LDR008,OP1004,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0114,2026-09-16 20:00:00,EXC001,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0115,2026-09-16 20:00:00,BDZ003,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0116,2026-09-16 21:00:00,LDR002,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0117,2026-09-16 21:00:00,BDZ003,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0118,2026-09-16 21:00:00,BDZ003,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0119,2026-09-16 22:00:00,LDR002,OP1005,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0120,2026-09-16 22:00:00,GRD004,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0121,2026-09-16 22:00:00,GRD004,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0122,2026-09-16 22:00:00,LDR008,OP1001,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0123,2026-09-16 23:00:00,EXC001,OP1003,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0124,2026-09-16 23:00:00,EXC001,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0125,2026-09-16 23:00:00,EXC007,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0126,2026-09-16 23:00:00,EXC007,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0127,2026-09-16 23:00:00,EXC007,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0128,2026-09-17 00:00:00,EXC001,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0129,2026-09-17 00:00:00,BDZ003,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0130,2026-09-17 00:00:00,EXC007,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0131,2026-09-17 01:00:00,LDR002,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0132,2026-09-17 01:00:00,GRD004,OP1001,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0133,2026-09-17 02:00:00,BDZ003,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0134,2026-09-17 02:00:00,GRD004,OP1006,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0135,2026-09-17 02:00:00,DMP005,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0136,2026-09-17 02:00:00,DMP005,OP1006,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0137,2026-09-17 02:00:00,CMP006,OP1009,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0138,2026-09-17 02:00:00,CMP006,OP1009,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0139,2026-09-17 02:00:00,LDR008,OP1001,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0140,2026-09-17 02:00:00,LDR008,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0141,2026-09-17 03:00:00,GRD004,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0142,2026-09-17 03:00:00,EXC007,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0143,2026-09-17 03:00:00,LDR008,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0144,2026-09-17 04:00:00,LDR002,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0145,2026-09-17 04:00:00,GRD004,OP1004,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0146,2026-09-17 04:00:00,LDR008,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0147,2026-09-17 04:00:00,LDR008,OP1006,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0148,2026-09-17 04:00:00,LDR008,OP1006,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0149,2026-09-17 05:00:00,BDZ003,OP1005,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0150,2026-09-17 05:00:00,BDZ003,OP1005,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0151,2026-09-17 05:00:00,CMP006,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0152,2026-09-17 06:00:00,EXC001,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0153,2026-09-17 06:00:00,CMP006,OP1001,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0154,2026-09-17 07:00:00,LDR002,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0155,2026-09-17 08:00:00,DMP005,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0156,2026-09-17 08:00:00,CMP006,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0157,2026-09-17 08:00:00,EXC007,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0158,2026-09-17 08:00:00,LDR008,OP1007,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0159,2026-09-17 09:00:00,BDZ003,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0160,2026-09-17 09:00:00,GRD004,OP1009,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0161,2026-09-17 10:00:00,LDR002,OP1003,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0162,2026-09-17 10:00:00,LDR002,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0163,2026-09-17 10:00:00,BDZ003,OP1007,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0164,2026-09-17 11:00:00,CMP006,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0165,2026-09-17 11:00:00,CMP006,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0166,2026-09-17 11:00:00,CMP006,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0167,2026-09-17 12:00:00,EXC001,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0168,2026-09-17 12:00:00,EXC001,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0169,2026-09-17 12:00:00,EXC001,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0170,2026-09-17 12:00:00,LDR002,OP1008,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0171,2026-09-17 12:00:00,LDR002,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0172,2026-09-17 13:00:00,GRD004,OP1004,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0173,2026-09-17 13:00:00,GRD004,OP1004,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0174,2026-09-17 13:00:00,GRD004,OP1004,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0175,2026-09-17 14:00:00,DMP005,OP1008,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0176,2026-09-17 14:00:00,CMP006,OP1007,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0177,2026-09-17 15:00:00,EXC001,OP1002,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0178,2026-09-17 15:00:00,LDR002,OP1003,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0179,2026-09-17 15:00:00,EXC007,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0180,2026-09-17 15:00:00,EXC007,OP1010,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0181,2026-09-17 15:00:00,EXC007,OP1010,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0182,2026-09-17 15:00:00,EXC007,OP1010,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0183,2026-09-17 17:00:00,CMP006,OP1006,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0184,2026-09-17 18:00:00,GRD004,OP1003,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0185,2026-09-17 18:00:00,GRD004,OP1003,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0186,2026-09-17 18:00:00,GRD004,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0187,2026-09-17 19:00:00,EXC001,OP1002,repeated_slippage,info,Repeated track/wheel slippage detected,Reduce throttle and reposition for traction.
+COACH0188,2026-09-17 19:00:00,DMP005,OP1007,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.
+COACH0189,2026-09-17 19:00:00,CMP006,OP1005,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0190,2026-09-17 19:00:00,LDR008,OP1010,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0191,2026-09-17 19:00:00,LDR008,OP1010,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0192,2026-09-17 20:00:00,LDR002,OP1004,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0193,2026-09-17 21:00:00,GRD004,OP1007,hoist_while_tramming,warning,Hoisting bucket while machine is moving,Complete the lift before tramming forward.
+COACH0194,2026-09-17 22:00:00,DMP005,OP1002,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0195,2026-09-17 23:00:00,EXC001,OP1003,hard_braking,info,Sudden deceleration detected,Anticipate stops to reduce brake and drivetrain wear.
+COACH0196,2026-09-17 23:00:00,GRD004,OP1002,high_pressure_low_rpm,warning,High hydraulic pressure at low engine RPM,Increase RPM before applying heavy load.

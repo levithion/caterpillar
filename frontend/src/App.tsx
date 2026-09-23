@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Dashboard } from "./components/Dashboard";
 import { Safety } from "./components/Safety";
+import { Coaching } from "./components/Coaching";
 import { Training } from "./components/Training";
 import { Anomalies } from "./components/Anomalies";
 import { Predictor } from "./components/Predictor";
@@ -9,6 +10,7 @@ import { Predictor } from "./components/Predictor";
 const TABS = [
   { id: "dashboard", label: "Dashboard", component: Dashboard },
   { id: "safety", label: "Safety", component: Safety },
+  { id: "coaching", label: "Coaching", component: Coaching },
   { id: "training", label: "Training", component: Training },
   { id: "anomalies", label: "Anomalies", component: Anomalies },
   { id: "predictor", label: "Task Time", component: Predictor },

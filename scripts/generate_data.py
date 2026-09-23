@@ -109,78 +109,207 @@ with open(f"{OUT}/tasks.csv", "w", newline="") as f:
     w.writeheader()
     w.writerows(tasks)
 
-# ---------- telemetry (time series, safety + anomaly detection) ----------
-telemetry = []
-for mach in machines:
-    engine_hours = mach["Total Engine Hours"] - random.uniform(50, 150)
-    ts = (TODAY - timedelta(days=8)).replace(hour=7)
-    for _ in range(30):
-        ts += timedelta(hours=random.choice([1, 2, 3]))
-        engine_hours += round(random.uniform(0.8, 2.5), 1)
-        idling = random.choices([5, 10, 15, 20, 30, 45, 60, 75], weights=[20, 20, 20, 15, 10, 8, 4, 3])[0]
-        seatbelt = random.choices(["Fastened", "Unfastened"], weights=[19, 1])[0]
-        proximity_dist = round(random.uniform(0.5, 25), 1)
-        proximity_alert = "Yes" if proximity_dist < 2 else "No"
-        excessive_idle = idling >= 60
-        safety_alert = "Yes" if (seatbelt == "Unfastened" or proximity_alert == "Yes" or excessive_idle) else "No"
 
-        telemetry.append({
-            "Timestamp": ts.strftime("%Y-%m-%d %H:%M:%S"),
-            "Machine ID": mach["Machine ID"],
-            "Operator ID": random.choice(operators)["Operator ID"],
-            "Engine Hours": round(engine_hours, 1),
-            "Fuel Used (L)": round(random.uniform(1.5, 8.0), 1),
-            "Load Cycles": random.randint(0, 15),
-            "Idling Time (min)": idling,
-            "Engine RPM": random.randint(700, 2200),
-            "Speed (km/h)": round(random.uniform(0, 25), 1),
-            "Seatbelt Status": seatbelt,
-            "Proximity Distance (m)": proximity_dist,
-            "Proximity Alert": proximity_alert,
-            "Safety Alert Triggered": safety_alert,
-        })
+# ---------- Member 2: safety telemetry (time series) ----------
+def generate_safety_telemetry(machines, operators):
+    telemetry = []
+    for mach in machines:
+        engine_hours = mach["Total Engine Hours"] - random.uniform(50, 150)
+        ts = (TODAY - timedelta(days=8)).replace(hour=7)
+        for _ in range(30):
+            ts += timedelta(hours=random.choice([1, 2, 3]))
+            engine_hours += round(random.uniform(0.8, 2.5), 1)
+            idling = random.choices([5, 10, 15, 20, 30, 45, 60, 75], weights=[20, 20, 20, 15, 10, 8, 4, 3])[0]
+            seatbelt = random.choices(["Fastened", "Unfastened"], weights=[19, 1])[0]
+            proximity_dist = round(random.uniform(0.5, 25), 1)
+            proximity_alert = "Yes" if proximity_dist < 2 else "No"
+            excessive_idle = idling >= 60
+            safety_alert = "Yes" if (seatbelt == "Unfastened" or proximity_alert == "Yes" or excessive_idle) else "No"
 
-telemetry.sort(key=lambda r: r["Timestamp"])
+            rpm = random.randint(700, 2200)
+            speed = round(random.uniform(0, 25), 1)
+            hydraulic_pressure = round(random.uniform(50, 280), 1)
+            slippage_events = random.choices([0, 1, 2, 3], weights=[70, 20, 7, 3])[0]
+            bucket_position = random.choice(["rest", "hoist", "dump", "dig"])
+
+            baseline_fatigue = random.randint(25, 45)
+            eye_closure = round(random.uniform(0, 0.3), 2)
+            blink_rate = random.randint(12, 20)
+            head_pitch = random.randint(-5, 5)
+
+            # Inject realistic fatigue events
+            if random.random() < 0.15:
+                eye_closure = round(random.uniform(1.6, 2.5), 2)
+                baseline_fatigue = random.randint(70, 90)
+                blink_rate = random.randint(6, 10)
+                head_pitch = random.randint(-15, -5)
+
+            # Inject realistic coaching scenarios
+            if random.random() < 0.15:
+                bucket_position = "hoist"
+                speed = round(random.uniform(2, 10), 1)
+                hydraulic_pressure = round(random.uniform(200, 280), 1)
+
+            if speed < 3 and hydraulic_pressure > 200 and random.random() < 0.3:
+                rpm = random.randint(700, 1100)
+
+            if eye_closure > 1.5:
+                alert_level = "critical"
+                haptic_triggered = "Yes"
+            elif baseline_fatigue > 60 or blink_rate < 10:
+                alert_level = "caution"
+                haptic_triggered = random.choice(["Yes", "No"])
+            else:
+                alert_level = "normal"
+                haptic_triggered = "No"
+
+            telemetry.append({
+                "Timestamp": ts.strftime("%Y-%m-%d %H:%M:%S"),
+                "Machine ID": mach["Machine ID"],
+                "Operator ID": random.choice(operators)["Operator ID"],
+                "Engine Hours": round(engine_hours, 1),
+                "Fuel Used (L)": round(random.uniform(1.5, 8.0), 1),
+                "Load Cycles": random.randint(0, 15),
+                "Idling Time (min)": idling,
+                "Engine RPM": rpm,
+                "Speed (km/h)": speed,
+                "Seatbelt Status": seatbelt,
+                "Proximity Distance (m)": proximity_dist,
+                "Proximity Alert": proximity_alert,
+                "Safety Alert Triggered": safety_alert,
+                "Hydraulic Pressure (bar)": hydraulic_pressure,
+                "Slippage Events": slippage_events,
+                "Bucket Position": bucket_position,
+                "Fatigue Score": baseline_fatigue,
+                "Eye Closure Duration (s)": eye_closure,
+                "Blink Rate": blink_rate,
+                "Head Pitch (deg)": head_pitch,
+                "Alert Level": alert_level,
+                "Haptic Triggered": haptic_triggered,
+            })
+    telemetry.sort(key=lambda r: r["Timestamp"])
+    return telemetry
+
+
+telemetry = generate_safety_telemetry(machines, operators)
 with open(f"{OUT}/telemetry.csv", "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(telemetry[0].keys()))
     w.writeheader()
     w.writerows(telemetry)
 
-# ---------- safety incidents (derived from flagged telemetry + a few extra) ----------
-incident_types_map = {
-    "Unfastened": "Seatbelt Violation",
-}
-incidents = []
-inc_id = 1
-for row in telemetry:
-    if row["Safety Alert Triggered"] == "Yes":
-        if row["Seatbelt Status"] == "Unfastened":
-            itype = "Seatbelt Violation"
-            severity = "Medium"
-        elif row["Proximity Alert"] == "Yes":
-            itype = "Proximity Breach"
-            severity = "High"
-        else:
-            itype = "Excessive Idling"
-            severity = "Low"
-        incidents.append({
-            "Incident ID": f"INC{inc_id:04d}",
-            "Timestamp": row["Timestamp"],
-            "Machine ID": row["Machine ID"],
-            "Operator ID": row["Operator ID"],
-            "Incident Type": itype,
-            "Severity": severity,
-            "Location": random.choice(sites),
-            "Description": f"{itype} detected during routine telemetry monitoring.",
-            "Action Taken": random.choice(["Operator notified", "Supervisor alerted", "Task paused", "Logged only"]),
-            "Resolved": random.choices(["Yes", "No"], weights=[7, 3])[0],
-        })
-        inc_id += 1
+# ---------- Member 2: safety incidents (derived from flagged telemetry) ----------
+def generate_safety_incidents(telemetry, sites):
+    incidents = []
+    inc_id = 1
+    for row in telemetry:
+        if row["Safety Alert Triggered"] == "Yes":
+            if row["Seatbelt Status"] == "Unfastened":
+                itype = "Seatbelt Violation"
+                severity = "Medium"
+            elif row["Proximity Alert"] == "Yes":
+                itype = "Proximity Breach"
+                severity = "High"
+            else:
+                itype = "Excessive Idling"
+                severity = "Low"
+            incidents.append({
+                "Incident ID": f"INC{inc_id:04d}",
+                "Timestamp": row["Timestamp"],
+                "Machine ID": row["Machine ID"],
+                "Operator ID": row["Operator ID"],
+                "Incident Type": itype,
+                "Severity": severity,
+                "Location": random.choice(sites),
+                "Description": f"{itype} detected during routine telemetry monitoring.",
+                "Action Taken": random.choice(["Operator notified", "Supervisor alerted", "Task paused", "Logged only"]),
+                "Resolved": random.choices(["Yes", "No"], weights=[7, 3])[0],
+            })
+            inc_id += 1
+    return incidents
 
+
+incidents = generate_safety_incidents(telemetry, sites)
 with open(f"{OUT}/safety_incidents.csv", "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(incidents[0].keys()))
     w.writeheader()
     w.writerows(incidents)
+
+# ---------- Member 2: coaching events (sparse, rule-derived) ----------
+def generate_coaching_events(telemetry):
+    events = []
+    event_id = 1
+    prev_speed = {}
+    for row in telemetry:
+        machine_id = row["Machine ID"]
+        speed = float(row["Speed (km/h)"])
+        rpm = int(row["Engine RPM"])
+        pressure = float(row["Hydraulic Pressure (bar)"])
+        slippage = int(row["Slippage Events"])
+        bucket = row["Bucket Position"]
+
+        if bucket == "hoist" and speed > 0:
+            events.append({
+                "Event ID": f"COACH{event_id:04d}",
+                "Timestamp": row["Timestamp"],
+                "Machine ID": machine_id,
+                "Operator ID": row["Operator ID"],
+                "Event Type": "hoist_while_tramming",
+                "Severity": "warning",
+                "Message": "Hoisting bucket while machine is moving",
+                "Recommended Action": "Complete the lift before tramming forward.",
+            })
+            event_id += 1
+
+        if pressure > 200 and rpm < 1200:
+            events.append({
+                "Event ID": f"COACH{event_id:04d}",
+                "Timestamp": row["Timestamp"],
+                "Machine ID": machine_id,
+                "Operator ID": row["Operator ID"],
+                "Event Type": "high_pressure_low_rpm",
+                "Severity": "warning",
+                "Message": "High hydraulic pressure at low engine RPM",
+                "Recommended Action": "Increase RPM before applying heavy load.",
+            })
+            event_id += 1
+
+        if slippage >= 2:
+            events.append({
+                "Event ID": f"COACH{event_id:04d}",
+                "Timestamp": row["Timestamp"],
+                "Machine ID": machine_id,
+                "Operator ID": row["Operator ID"],
+                "Event Type": "repeated_slippage",
+                "Severity": "info",
+                "Message": "Repeated track/wheel slippage detected",
+                "Recommended Action": "Reduce throttle and reposition for traction.",
+            })
+            event_id += 1
+
+        prev = prev_speed.get(machine_id, speed)
+        if prev - speed > 5:
+            events.append({
+                "Event ID": f"COACH{event_id:04d}",
+                "Timestamp": row["Timestamp"],
+                "Machine ID": machine_id,
+                "Operator ID": row["Operator ID"],
+                "Event Type": "hard_braking",
+                "Severity": "info",
+                "Message": "Sudden deceleration detected",
+                "Recommended Action": "Anticipate stops to reduce brake and drivetrain wear.",
+            })
+            event_id += 1
+        prev_speed[machine_id] = speed
+
+    events.sort(key=lambda e: e["Timestamp"])
+    return events
+
+
+coaching_events = generate_coaching_events(telemetry)
+with open(f"{OUT}/coaching_events.csv", "w", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(coaching_events[0].keys()))
+    w.writeheader()
+    w.writerows(coaching_events)
 
 # ---------- training modules ----------
 modules = [
@@ -232,5 +361,6 @@ print("operators:", len(operators))
 print("tasks:", len(tasks))
 print("telemetry:", len(telemetry))
 print("incidents:", len(incidents))
+print("coaching_events:", len(coaching_events))
 print("training_modules:", len(modules))
 print("training_records:", len(records))
