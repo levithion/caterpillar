@@ -30,6 +30,9 @@ for i in range(1, 9):
         "Next Maintenance Due": next_maint.date().isoformat(),
         "Total Engine Hours": round(random.uniform(800, 6000), 1),
         "Status": random.choices(["Active", "Idle", "Maintenance"], weights=[7, 2, 1])[0],
+        "Has IR Camera": random.choices(["Yes", "No"], weights=[8, 2])[0],
+        "Has Active Suspension": random.choices(["Yes", "No"], weights=[7, 3])[0],
+        "Has Thermal Camera": random.choices(["Yes", "No"], weights=[6, 4])[0],
     })
 
 with open(f"{OUT}/machines.csv", "w", newline="") as f:
@@ -42,9 +45,13 @@ first_names = ["Raj", "Amit", "Priya", "Sara", "John", "Wei", "Fatima", "Carlos"
 last_names = ["Kumar", "Singh", "Patel", "Lee", "Smith", "Chen", "Khan", "Diaz", "Rossi", "Brown"]
 skills = ["Beginner", "Intermediate", "Expert"]
 operators = []
+weight_classes = ["Light", "Medium", "Heavy"]
 for i in range(1, 11):
     join = TODAY - timedelta(days=random.randint(60, 3000))
     license_exp = TODAY + timedelta(days=random.randint(30, 800))
+    shift = random.choice(["Day", "Night"])
+    # Night shifts carry a higher baseline fatigue risk; used to bias fatigue_events.csv.
+    fatigue_risk_weights = [3, 4, 5] if shift == "Night" else [6, 3, 1]
     operators.append({
         "Operator ID": f"OP{1000 + i}",
         "Name": f"{random.choice(first_names)} {random.choice(last_names)}",
@@ -53,8 +60,10 @@ for i in range(1, 11):
                                           "Heavy Equipment Cert, Safety Cert Level 2", "None"]),
         "License Expiry": license_exp.date().isoformat(),
         "Date of Joining": join.date().isoformat(),
-        "Shift": random.choice(["Day", "Night"]),
+        "Shift": shift,
         "Contact": f"op{1000 + i}@caterpillar-demo.local",
+        "Typical Fatigue Risk": random.choices(["Low", "Medium", "High"], weights=fatigue_risk_weights)[0],
+        "Weight Class": random.choice(weight_classes),
     })
 
 with open(f"{OUT}/operators.csv", "w", newline="") as f:
@@ -88,6 +97,15 @@ for i in range(1, 51):
     start_time = day.replace(hour=random.choice([6, 7, 8, 13, 14]))
     end_time = start_time + timedelta(minutes=actual) if status == "Completed" else None
 
+    # Placeholder model output: a plausible predicted duration + confidence range
+    # persisted alongside the task. The live model (backend/app/ml.py) recomputes
+    # and overwrites this at inference time; these values just keep the column
+    # populated so the dataset schema never needs to change later.
+    pred_center = actual if status == "Completed" else est
+    predicted = round(pred_center * random.uniform(0.95, 1.05))
+    pred_lower = round(predicted * 0.88)
+    pred_upper = round(predicted * 1.12)
+
     tasks.append({
         "Task ID": f"T{i:04d}",
         "Date": day.date().isoformat(),
@@ -99,6 +117,9 @@ for i in range(1, 51):
         "Priority": random.choice(["Low", "Medium", "High"]),
         "Estimated Time (min)": est,
         "Actual Time (min)": actual if status == "Completed" else "",
+        "Predicted Time (min)": predicted,
+        "Prediction Lower Bound (min)": pred_lower,
+        "Prediction Upper Bound (min)": pred_upper,
         "Start Time": start_time.strftime("%Y-%m-%d %H:%M:%S"),
         "End Time": end_time.strftime("%Y-%m-%d %H:%M:%S") if end_time else "",
         "Status": status,
