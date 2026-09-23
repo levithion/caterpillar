@@ -126,3 +126,56 @@ def build_environment_training_frame(df: pd.DataFrame, machine_codes: dict[str, 
             "hvac": np.array(y_hvac_list, dtype=np.int32),
         },
     )
+
+
+def build_fatigue_training_frame(
+    df: pd.DataFrame, machine_codes: dict[str, int]
+) -> tuple[np.ndarray, list[str]]:
+    """Supervised fatigue-alert learning from the IR-camera simulation feed.
+
+    Feature row: [machine_code, eye_closure, blink_rate, head_pitch, hour].
+    Label: the Alert Level already recorded on the row (rule-labelled, but the
+    model learns the *composition* of signals that makes an alert, and can
+    disagree with the flat formula at the boundaries)."""
+    X_list, y_list = [], []
+    for _, row in df.iterrows():
+        machine = row["Machine ID"]
+        if machine not in machine_codes:
+            continue
+        ts = pd.to_datetime(row["Timestamp"])
+        X_list.append([
+            machine_codes[machine],
+            float(row["Eye Closure Duration (s)"]),
+            float(row["Blink Rate (per min)"]),
+            float(row["Head Pitch (deg)"]),
+            ts.hour,
+        ])
+        y_list.append(str(row["Alert Level"]))
+    return np.array(X_list, dtype=np.float32), y_list
+
+
+def fatigue_feature_row(
+    machine_code: int, eye_closure: float, blink_rate: float, head_pitch: float, hour: int
+) -> list[float]:
+    """Single fatigue inference feature vector (order matches training frame)."""
+    return [machine_code, eye_closure, blink_rate, head_pitch, hour]
+
+
+TELEMETRY_ANOMALY_FEATURES = [
+    "Engine RPM", "Speed (km/h)", "Hydraulic Pressure (bar)",
+    "Load Cycles", "Idling Time (min)", "Fuel Used (L)", "Slippage Events",
+]
+
+
+def telemetry_anomaly_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Per-machine z-normalized telemetry so one IsolationForest can learn
+    each machine's own norm, mirroring the ergo/env anomaly inputs."""
+    normalized = df.copy()
+    for column in TELEMETRY_ANOMALY_FEATURES:
+        if column not in normalized.columns:
+            continue
+        grouped = normalized.groupby("Machine ID")[column]
+        mean = grouped.transform("mean")
+        std = grouped.transform("std").replace(0, 1)
+        normalized[column] = (normalized[column] - mean) / std
+    return normalized[TELEMETRY_ANOMALY_FEATURES]

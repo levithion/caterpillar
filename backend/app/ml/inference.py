@@ -5,6 +5,7 @@ from collections import deque
 from datetime import datetime, timezone
 
 import joblib
+import numpy as np
 
 from app.config import get_settings
 from app.data import load_csv
@@ -13,6 +14,9 @@ from app.ml.features import (
     DAMPING_MAP,
     environment_history_to_row,
     ergonomics_history_to_row,
+    fatigue_feature_row,
+    telemetry_anomaly_features,
+    TELEMETRY_ANOMALY_FEATURES,
 )
 from app.ml.train import MODEL_FILES, load_meta, models_dir, models_ready
 from app.services import environment as env_svc
@@ -36,6 +40,8 @@ def _load_models() -> dict:
         "env_reg": joblib.load(d / MODEL_FILES["env_reg"]),
         "env_hvac": joblib.load(d / MODEL_FILES["env_hvac"]),
         "env_anomaly": joblib.load(d / MODEL_FILES["env_anomaly"]),
+        "fatigue_clf": joblib.load(d / MODEL_FILES["fatigue_clf"]),
+        "telemetry_anomaly": joblib.load(d / MODEL_FILES["telemetry_anomaly"]),
         "meta": load_meta(),
     }
     return _model_bundle
@@ -48,6 +54,125 @@ def get_ml_status() -> dict:
         "engine": "ml" if models_ready() else "unavailable",
         **meta,
     }
+
+
+# ---------------------------------------------------------------------------
+# Member 2: learned fatigue alerts + telemetry-wide anomaly flags
+# ---------------------------------------------------------------------------
+FATIGUE_CLASSES_CAPS = {"normal", "caution", "critical"}
+
+
+def predict_fatigue_alerts(rows: list[dict]) -> list[dict]:
+    """Model-based alert prediction for fatigue rows:
+    each row needs Machine ID, Eye Closure Duration (s), Blink Rate (per min),
+    Head Pitch (deg), Timestamp."""
+    if not models_ready():
+        raise RuntimeError("ML models not trained — run scripts/train_models.py")
+
+    bundle = _load_models()
+    meta = bundle["meta"]
+    machine_codes: dict[str, int] = meta["machine_codes"]
+
+    import pandas as pd
+
+    frame = pd.DataFrame(rows)
+    ts = pd.to_datetime(frame["Timestamp"])
+    X = np.array(
+        [
+            fatigue_feature_row(
+                machine_codes.get(machine, 0),
+                float(eye),
+                float(blink),
+                float(pitch),
+                int(hour),
+            )
+            for machine, eye, blink, pitch, hour in zip(
+                frame["Machine ID"],
+                frame["Eye Closure Duration (s)"],
+                frame["Blink Rate (per min)"],
+                frame["Head Pitch (deg)"],
+                ts.dt.hour,
+            )
+        ],
+        dtype=np.float32,
+    )
+    clf = bundle["fatigue_clf"]
+    labels = clf.predict(X)
+    prob_matrix = clf.predict_proba(X)
+    classes = list(clf.classes_)
+    results = []
+    for i, label in enumerate(labels):
+        idx = classes.index(label)
+        results.append({
+            "alert_level": label,
+            "probability": round(float(prob_matrix[i][idx]), 3),
+        })
+    return results
+
+
+def telemetry_model_anomalies(limit: int = 20) -> list[dict]:
+    """Learned multivariate anomaly flags over telemetry, per-machine norm."""
+    if not models_ready():
+        raise RuntimeError("ML models not trained — run scripts/train_models.py")
+
+    bundle = _load_models()
+    model = bundle["telemetry_anomaly"]
+
+    df = load_csv("telemetry.csv")
+    normalized = telemetry_anomaly_features(df)
+    scores = -model.decision_function(normalized)
+    flagged_mask = np.array(model.predict(normalized) == -1)
+
+    flagged_norm = normalized[flagged_mask]
+    flagged_raw = df[flagged_mask]
+    flagged_scores = scores[flagged_mask]
+    rows: list[dict] = []
+    for pos, (_, raw) in enumerate(flagged_raw.iterrows()):
+        norm_row = flagged_norm.iloc[pos]
+        drivers = sorted(
+            TELEMETRY_ANOMALY_FEATURES,
+            key=lambda c: abs(float(norm_row[c])),
+            reverse=True,
+        )[:3]
+        rows.append({
+            "timestamp": raw["Timestamp"],
+            "machine_id": raw["Machine ID"],
+            "operator_id": raw["Operator ID"],
+            "anomaly_score": round(float(flagged_scores[pos]), 3),
+            "severity": "high",
+            "top_drivers": drivers,
+        })
+    rows.sort(key=lambda r: r["anomaly_score"], reverse=True)
+    return rows[:limit]
+
+
+def fatigue_rule_model_compare(limit: int = 15) -> list[dict]:
+    """Rule vs learned model on the most recent fatigue readings.
+    Disagreements first — that's the demo moment."""
+    if not models_ready():
+        raise RuntimeError("ML models not trained — run scripts/train_models.py")
+
+    df = load_csv("fatigue_events.csv").sort_values("Timestamp", ascending=False).head(limit)
+    rows = df.to_dict(orient="records")
+    predictions = predict_fatigue_alerts(rows)
+
+    comparisons = []
+    for row, prediction in zip(rows, predictions):
+        rule = str(row["Alert Level"])
+        model_label = prediction["alert_level"]
+        comparisons.append({
+            "timestamp": row["Timestamp"],
+            "machine_id": row["Machine ID"],
+            "operator_id": row["Operator ID"],
+            "fatigue_score": int(row["Fatigue Score"]),
+            "eye_closure_seconds": float(row["Eye Closure Duration (s)"]),
+            "rule_alert_level": rule,
+            "model_alert_level": model_label,
+            "model_probability": prediction["probability"],
+            "agreement": rule.lower() == model_label.lower(),
+        })
+    comparisons.sort(key=lambda c: (c["agreement"], -c["fatigue_score"]))
+    return comparisons
 
 
 class MLLiveEngine:
