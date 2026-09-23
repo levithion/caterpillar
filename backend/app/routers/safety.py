@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pandas as pd
 from fastapi import APIRouter, HTTPException
@@ -52,7 +52,7 @@ def create_incident(request: CreateIncidentRequest):
 
     new_row = {
         "Incident ID": f"INC{next_id:04d}",
-        "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "Timestamp": datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
         "Machine ID": request.machine_id,
         "Operator ID": request.operator_id,
         "Incident Type": request.incident_type,
