@@ -18,6 +18,8 @@ from app.ml.features import (
     DAMPING_LABELS,
     build_environment_training_frame,
     build_ergonomics_training_frame,
+    build_fatigue_training_frame,
+    telemetry_anomaly_features,
 )
 
 logger = logging.getLogger(__name__)
@@ -30,6 +32,8 @@ MODEL_FILES = {
     "env_reg": "environment_regressor.joblib",
     "env_hvac": "environment_hvac.joblib",
     "env_anomaly": "environment_anomaly.joblib",
+    "fatigue_clf": "fatigue_classifier.joblib",
+    "telemetry_anomaly": "telemetry_anomaly.joblib",
     "meta": "model_meta.json",
 }
 
@@ -101,6 +105,32 @@ def train_all(force: bool = False) -> dict:
     joblib.dump(env_hvac, d / MODEL_FILES["env_hvac"])
     joblib.dump(env_anomaly, d / MODEL_FILES["env_anomaly"])
 
+    # Fatigue alert classifier + telemetry-wide IsolationForest (Member 2).
+    fatigue_df = load_csv("fatigue_events.csv")
+    # Machine codes shared across every model must cover telemetry machines too.
+    telemetry_df = load_csv("telemetry.csv")
+    extra_machines = sorted(
+        set(telemetry_df["Machine ID"].unique()) - set(machines)
+    )
+    if extra_machines:
+        machines = sorted(set(machines) | set(extra_machines))
+        machine_codes.update({m: i for i, m in enumerate(extra_machines, start=len(machines))})
+
+    X_fatigue, y_fatigue = build_fatigue_training_frame(fatigue_df, machine_codes)
+    fatigue_clf = RandomForestClassifier(
+        n_estimators=150, max_depth=12, random_state=42, n_jobs=-1,
+        class_weight="balanced",
+    )
+    fatigue_clf.fit(X_fatigue, y_fatigue)
+    joblib.dump(fatigue_clf, d / MODEL_FILES["fatigue_clf"])
+
+    tele_normalized = telemetry_anomaly_features(telemetry_df)
+    tele_anomaly = IsolationForest(
+        contamination=0.08, random_state=42, n_jobs=-1,
+    )
+    tele_anomaly.fit(tele_normalized)
+    joblib.dump(tele_anomaly, d / MODEL_FILES["telemetry_anomaly"])
+
     meta = {
         "version": 1,
         "engine": "ml",
@@ -108,6 +138,9 @@ def train_all(force: bool = False) -> dict:
         "damping_labels": DAMPING_LABELS,
         "ergonomics_samples": len(X_ergo),
         "environment_samples": len(X_env),
+        "fatigue_samples": len(X_fatigue),
+        "fatigue_classes": sorted(set(y_fatigue)),
+        "telemetry_samples": int(tele_normalized.shape[0]),
         "shock_positive_rate": float(np.mean(y_ergo["shock"])),
         "hvac_positive_rate": float(np.mean(y_env["hvac"])),
         "models": list(MODEL_FILES.keys()),

@@ -43,7 +43,6 @@ INC0041,2026-09-17 16:00:00,CMP006,OP1005,Seatbelt Violation,Medium,Site B - Qua
 INC0042,2026-09-17 18:00:00,DMP005,OP1008,Seatbelt Violation,Medium,Site C - Highway Ext,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,No
 INC0043,2026-09-17 18:00:00,CMP006,OP1001,Seatbelt Violation,Medium,Site B - Quarry,Seatbelt Violation detected during routine telemetry monitoring.,Task paused,Yes
 INC0044,2026-09-18 00:00:00,LDR002,OP1006,Proximity Breach,High,Site D - Residential,Proximity Breach detected during routine telemetry monitoring.,Supervisor alerted,Yes
-INC0045,2026-09-23 10:58:04,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No
-INC0046,2026-09-23 11:15:03,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No
-INC0047,2026-09-23 11:16:04,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No
-INC0048,2026-09-23 11:18:54,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No
+INC0045,2026-09-23 11:55:54,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No
+INC0046,2026-09-23 12:01:01,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No
+INC0047,2026-09-23 12:04:21,EXC001,OP1001,Fatigue Alert,High,Unknown,test incident,Logged via assistant,No

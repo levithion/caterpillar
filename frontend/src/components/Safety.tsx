@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   createIncident,
   getIncidents,
@@ -6,7 +6,33 @@ import {
   type Row,
   type SafetySummaryData,
 } from "../api/safety";
-import { get } from "../api/client";
+import { get, getOne } from "../api/client";
+import type { FatigueCompareRow } from "../api/anomalies";
+
+type ModelCheck = FatigueCompareRow;
+
+function useModelCheck(limit = 15) {
+  const [checks, setChecks] = useState<ModelCheck[]>([]);
+  useEffect(() => {
+    getOne<ModelCheck[]>(`/ml/fatigue-compare?limit=${limit}`)
+      .then(setChecks)
+      .catch(() => setChecks([]));
+  }, [limit]);
+  return checks;
+}
+
+function ModelCheckBadge({ check }: { check?: ModelCheck }) {
+  if (!check) return null;
+  return check.agreement ? (
+    <span className="badge model-agree" title="Trained classifier reached the same verdict">
+      🤖 Model agrees ({Math.round(check.model_probability * 100)}%)
+    </span>
+  ) : (
+    <span className="badge model-warn" title={`Trained classifier says ${check.model_alert_level}`}>
+      ⚠️ Model disagrees — says {check.model_alert_level}
+    </span>
+  );
+}
 
 function useSafetySummary() {
   const [summary, setSummary] = useState<SafetySummaryData | null>(null);
@@ -119,6 +145,24 @@ export function Safety() {
 
   const isLoading = summaryLoading || incidentsLoading;
   const error = summaryError || incidentsError;
+  const modelChecks = useModelCheck();
+
+  // Attention-first: highest fatigue score at the top, only the top 6 shown.
+  const fatigueWatch = useMemo(() => {
+    if (!summary) return [];
+    return [...summary.latest_fatigue]
+      .sort((a, b) => Number(b["fatigue_score"]) - Number(a["fatigue_score"]))
+      .slice(0, 6);
+  }, [summary]);
+
+  function findCheck(row: Row): ModelCheck | undefined {
+    return modelChecks.find(
+      (c) =>
+        c.machine_id === row["Machine ID"] &&
+        c.operator_id === row["Operator ID"] &&
+        c.timestamp === row["last_seen"]
+    );
+  }
 
   return (
     <div className="panel">
@@ -132,11 +176,16 @@ export function Safety() {
           <section className="safety-section">
             <h3>Fatigue Snapshot</h3>
             <div className="cards">
-              {summary.latest_fatigue.map((f) => (
+              {fatigueWatch.map((f) => (
                 <div className="card" key={`${f["Machine ID"]}-${f["Operator ID"]}`}>
-                  <div>
-                    <strong>{f["Operator ID"]}</strong> · {f["Machine ID"]}
+                  <div className="task-head">
+                    <strong>{f["Operator ID"]}</strong>
+                    <span className={`badge alert-${String(f["alert_level"]).toLowerCase()}`}>
+                      {f["alert_level"]}
+                    </span>
+                    <ModelCheckBadge check={findCheck(f)} />
                   </div>
+                  <div className="task-meta">{f["Machine ID"]} · IR-camera simulation</div>
                   <FatigueGauge
                     score={Number(f["fatigue_score"])}
                     alertLevel={String(f["alert_level"])}
