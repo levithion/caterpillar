@@ -10,6 +10,10 @@ export class ApiError extends Error {
   }
 }
 
+export const BASE_URL = API_BASE_URL;
+
+export type Row = Record<string, string | number | null>;
+
 export async function apiGet<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`);
   if (!res.ok) {
@@ -17,4 +21,12 @@ export async function apiGet<T>(path: string): Promise<T> {
     throw new ApiError(detail || `Request failed: ${path}`, res.status);
   }
   return res.json() as Promise<T>;
+}
+
+export async function get(path: string): Promise<Row[]> {
+  return apiGet<Row[]>(path);
+}
+
+export async function getOne<T>(path: string): Promise<T> {
+  return apiGet<T>(path);
 }

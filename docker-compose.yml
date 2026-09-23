@@ -1,12 +1,16 @@
 services:
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - ./data:/app/data:ro
+      - ./models:/app/models
     environment:
       - DATA_DIR=/app/data
+      - MODELS_DIR=/app/models
       - CORS_ORIGINS=http://localhost:5173,http://localhost:3000
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/ready"]
@@ -16,7 +20,8 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: .
+      dockerfile: frontend/Dockerfile
       args:
         VITE_API_URL: http://localhost:8000/api
     ports:

@@ -1,4 +1,4 @@
-from app.data import load_csv, records
+from app.data import load_csv
 
 
 def list_machines() -> list[dict]:

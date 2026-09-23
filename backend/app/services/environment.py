@@ -1,7 +1,8 @@
 import pandas as pd
 
 from app.config import get_settings
-from app.data import load_csv, records
+from app.data import load_csv
+from app.utils import records
 
 
 def get_environment_df(machine_id: str | None = None, operator_id: str | None = None) -> pd.DataFrame:
