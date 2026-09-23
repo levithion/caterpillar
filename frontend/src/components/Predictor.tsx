@@ -1,131 +1,87 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { predictorApi, type TaskTimePrediction } from "../api/predictor";
 
 const TASK_TYPES = ["Earth Excavation", "Trenching", "Material Loading", "Grading", "Demolition", "Compaction", "Hauling"];
 const WEATHERS = ["Sunny", "Rainy", "Cloudy", "Windy", "Foggy"];
 const SKILLS = ["Beginner", "Intermediate", "Expert"];
-const STREAM_INTERVAL_MS = 4000;
-const MAX_FEED = 8;
-
-type StreamEntry = {
-  id: number;
-  taskType: string;
-  weather: string;
-  skill: string;
-  machineAge: number;
-  prediction: TaskTimePrediction;
-};
-
-function randomOf<T>(options: T[]): T {
-  return options[Math.floor(Math.random() * options.length)];
-}
 
 export function Predictor() {
-  const [feed, setFeed] = useState<StreamEntry[]>([]);
+  const [taskType, setTaskType] = useState(TASK_TYPES[0]);
+  const [weather, setWeather] = useState(WEATHERS[0]);
+  const [skill, setSkill] = useState(SKILLS[0]);
+  const [machineAge, setMachineAge] = useState(3);
+  const [result, setResult] = useState<TaskTimePrediction | null>(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [running, setRunning] = useState(false);
-  const nextId = useRef(0);
 
-  useEffect(() => {
-    if (!running) return;
-
-    let cancelled = false;
-
-    const tick = async () => {
-      const taskType = randomOf(TASK_TYPES);
-      const weather = randomOf(WEATHERS);
-      const skill = randomOf(SKILLS);
-      const machineAge = Math.round(Math.random() * 20);
-      try {
-        const prediction = await predictorApi.predictTaskTime({
-          task_type: taskType,
-          weather,
-          skill_level: skill,
-          machine_age: machineAge,
-        });
-        if (cancelled) return;
-        setError(null);
-        nextId.current += 1;
-        setFeed((prev) => [
-          { id: nextId.current, taskType, weather, skill, machineAge, prediction },
-          ...prev,
-        ].slice(0, MAX_FEED));
-      } catch {
-        if (!cancelled) setError("Prediction stream interrupted. Is the backend running?");
-      }
-    };
-
-    tick();
-    const interval = setInterval(tick, STREAM_INTERVAL_MS);
-    return () => {
-      cancelled = true;
-      clearInterval(interval);
-    };
-  }, [running]);
-
-  const latest = feed[0];
-  const history = feed.slice(1);
+  const predict = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await predictorApi.predictTaskTime({
+        task_type: taskType,
+        weather,
+        skill_level: skill,
+        machine_age: machineAge,
+      });
+      setResult(res);
+    } catch {
+      setError("Prediction failed. Is the backend running?");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="panel">
       <h2>Task Time Estimation</h2>
-      <p>
-        Simulates a live stream of incoming tasks (random type, weather, operator skill, machine age) and predicts
-        each one's completion time with a confidence range as it arrives.
-      </p>
-
-      <button onClick={() => setRunning((r) => !r)}>{running ? "Stop" : "Predict"}</button>
-
+      <div className="form">
+        <label>
+          Task Type
+          <select value={taskType} onChange={(e) => setTaskType(e.target.value)}>
+            {TASK_TYPES.map((t) => (
+              <option key={t}>{t}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Weather
+          <select value={weather} onChange={(e) => setWeather(e.target.value)}>
+            {WEATHERS.map((w) => (
+              <option key={w}>{w}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Operator Skill
+          <select value={skill} onChange={(e) => setSkill(e.target.value)}>
+            {SKILLS.map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Machine Age (yrs)
+          <input
+            type="number"
+            min={0}
+            max={20}
+            value={machineAge}
+            onChange={(e) => setMachineAge(Number(e.target.value))}
+          />
+        </label>
+        <button onClick={predict} disabled={loading}>
+          {loading ? "Predicting…" : "Predict"}
+        </button>
+      </div>
       {error && <p className="error">{error}</p>}
-
-      {latest ? (
+      {result !== null && (
         <div className="result">
-          <span className="badge">{running ? "● live" : "■ stopped"}</span>
+          Estimated time: <strong>{result.predicted_minutes} min</strong>
           <div>
-            <strong>{latest.taskType}</strong> · {latest.weather} · {latest.skill} · Machine age{" "}
-            {latest.machineAge} yrs
-          </div>
-          <div>
-            Estimated time: <strong>{latest.prediction.predicted_minutes} min</strong>
-          </div>
-          <div>
-            Confidence range: {latest.prediction.lower_bound_minutes}–{latest.prediction.upper_bound_minutes} min
+            Confidence range: {result.lower_bound_minutes}–{result.upper_bound_minutes} min
           </div>
         </div>
-      ) : (
-        !error && <p>{running ? "Waiting for the first task…" : "Click Predict to start the stream."}</p>
-      )}
-
-      {history.length > 0 && (
-        <>
-          <h3>Recent Stream</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Task Type</th>
-                <th>Weather</th>
-                <th>Skill</th>
-                <th>Machine Age</th>
-                <th>Predicted (min)</th>
-                <th>Range (min)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {history.map((entry) => (
-                <tr key={entry.id}>
-                  <td>{entry.taskType}</td>
-                  <td>{entry.weather}</td>
-                  <td>{entry.skill}</td>
-                  <td>{entry.machineAge}</td>
-                  <td>{entry.prediction.predicted_minutes}</td>
-                  <td>
-                    {entry.prediction.lower_bound_minutes}–{entry.prediction.upper_bound_minutes}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
       )}
     </div>
   );
