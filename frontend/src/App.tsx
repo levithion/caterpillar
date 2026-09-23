@@ -7,6 +7,7 @@ import { Training } from "./components/Training";
 import { Anomalies } from "./components/Anomalies";
 import { Predictor } from "./components/Predictor";
 import { Login } from "./components/Login";
+import { CatLogo } from "./components/CatLogo";
 import type { Operator } from "./api/auth";
 
 const TABS = [
@@ -56,6 +57,7 @@ function App() {
   return (
     <div className="app">
       <header>
+        <CatLogo />
         <h1>Smart Operator Assistant</h1>
         <nav>
           {TABS.map((tab) => (
