@@ -1,7 +1,7 @@
 export function CatLogo() {
   return (
     <span className="logo">
-      <span className="logo-mark">CAT</span>
+      <img src="/cat-wordmark.svg" alt="Caterpillar" className="logo-mark" />
     </span>
   );
 }
